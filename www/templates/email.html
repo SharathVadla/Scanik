@@ -1,0 +1,20 @@
+<ion-view view-title="SCANIK" class="screen_bg">
+  <ion-content class="screen_bg">
+   <div class="list">
+     <ion-list>
+       <ion-item class="screen_bg titleStyle" style="text-align:center">   
+      Please enter your Email Id(step-1)
+       </ion-item>
+     </ion-list>
+   <form ng-submit="gotoCreditcard()">
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Email</span>
+    <input type="text" placeholder="Enter Email" name="email" ng-model="email" required>
+  </label>
+   <label class="item screen_bg" >
+          <input class="button button-block button-outline button-light" type="submit" value="Next">
+        </label>
+   </form>
+</div>
+  </ion-content>
+</ion-view>

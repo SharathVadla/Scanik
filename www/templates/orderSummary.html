@@ -1,0 +1,33 @@
+<ion-view view-title="SCANIK">
+  <ion-nav-buttons side="right">        
+    <button class="button button-icon icon ion-bag" ng-click="gotoMycart()"></button>
+</ion-nav-buttons>
+  <ion-content class="screen_bg" scroll="false">
+     <ion-list>
+       <ion-item class="screen_bg titleStyle" style="text-align: center">
+    Order Summary
+       </ion-item>         
+       <ion-item  class="screen_bg">
+         <div class="row">
+         <div class="col col-50">Total amount:</div>
+        <div class="col"><b>$2475.00</b></div>
+        </div>
+       </ion-item>
+       <ion-item  class="screen_bg">
+         <div class="row">
+         <div class="col col-50">Shipping amount:</div>
+        <div class="col"><b>$100.00</b></div>
+        </div>
+       </ion-item>
+       <ion-item  class="screen_bg">
+          <label class="item item-input screen_bg">     
+    <span class="input-label " style="color:white">Preferred delivery date</span>
+    <input type="date| dd/MM/yyyy">
+  </label>
+       </ion-item>
+</ion-list>
+<label class="item screen_bg" >
+          <input class="button button-block button-outline button-light" type="submit" value="Confirm order" ng-click="gotoPaymentMethod()">
+        </label>
+  </ion-content>
+</ion-view>

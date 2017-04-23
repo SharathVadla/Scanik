@@ -1,0 +1,41 @@
+<ion-view view-title="SCANIK" class="screen_bg">
+  <ion-nav-buttons side="right">        
+    <button class="button button-icon icon ion-bag" ng-click="gotoMycart()"></button>
+</ion-nav-buttons>
+  <ion-content class="screen_bg">
+   <div class="list">
+     <ion-list>
+       <ion-item class="screen_bg titleStyle" style="text-align:center">   
+      Credit Card Information
+       </ion-item>
+    <ion-item class="screen_bg">
+     <div class="list list-inset">
+     <label class="item item-input">
+    <span class="input-label">Card No.</span>
+    <input type="number" style="color: black">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Expiry Date</span>
+    <input type="date| MM/yyyy" style="color: black">
+  </label>
+   <label class="item item-input">
+    <span class="input-label">CVV Code</span>
+    <input type="number" style="color: black">
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Zip Code</span>
+    <input type="number" style="color: black">
+  </label>
+     </div>
+    </ion-item>
+    <ion-item class="screen_bg">
+        <img src="img/cardsLogo.png" style="width: 100%;
+    padding-left: initial;">
+    </ion-item>
+   </ion-list>
+   <label class="item screen_bg" >
+          <input class="button button-block button-outline button-light" type="submit" value="Save card">
+        </label>
+</div>
+  </ion-content>
+</ion-view>

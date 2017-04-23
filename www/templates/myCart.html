@@ -1,0 +1,86 @@
+<ion-view view-title="My Cart" align-title="center">
+  <ion-nav-buttons side="right">        
+    <button class="button button-icon icon ion-bag" ng-click="gotoMycart()"></button>
+</ion-nav-buttons>
+<ion-content class="screen_bg">
+   <ion-item class="screen_bg titleStyle" style="text-align:center">    
+       My Products
+       </ion-item>
+        <ion-item  class="screen_bg">
+         <div class="row">
+         <div class="col col-50">Sony Television</div>
+        <div class="col col-33">$2500.00</div>
+     <div class="col">   
+    <select>
+      <option selected>1</option>
+      <option >2</option>
+      <option>3</option>
+    </select>
+     </div>    
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+         </div>
+       </ion-item>
+  
+      <ion-item  class="screen_bg">
+         <div class="row">
+         <div class="col col-50">Tide Detergent</div>
+        <div class="col col-33">$25.00</div>
+         <!--<div class="col icon ion-edit"></div>-->
+         <div class="col">   
+    <select>
+      <option selected>1</option>
+      <option >2</option>
+      <option>3</option>
+    </select>
+     </div> 
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+        </div>
+       </ion-item>
+            <ion-item  class="screen_bg">
+         <div class="row">
+         <div class="col col-50">Weber Grill</div>
+        <div class="col col-33">$25.00</div>
+        <!--<div class="col icon ion-edit"></div>-->
+        <div class="col">   
+    <select>
+      <option selected>1</option>
+      <option >2</option>
+      <option>3</option>
+    </select>
+     </div> 
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+        </div>
+       </ion-item>
+       
+  
+    <ion-item  class="screen_bg">
+        <div class="row">
+        <div class="col col-50">Shipping Cost</div>
+        <div class="col col-33">$25</div>
+         <!--<div class="col icon ion-edit"></div>-->
+         <div class="col">   
+    <select>
+      <option selected>1</option>
+      <option >2</option>
+      <option>3</option>
+    </select>
+     </div> 
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+        </div>
+   </ion-item>
+
+       <ion-item  class="screen_bg">
+         <div class="row">
+         <div class="col col-50">Total</div>
+        <div class="col col-33"><b>$2575.00</b></div>
+        </div>
+       </ion-item>
+        <ion-item class="screen_bg">
+       <button class="button button-block button-outline button-light icon-right" ng-model="continueShopping" ng-click="gotoScanner()">Continue Shopping</button>
+       </ion-item>
+       <ion-item class="screen_bg">
+       <button class="button button-block button-outline button-light icon-right" ng-model="checkOut" ng-click="gotoOrderSummary()">Proceed to Check out</button>
+       </ion-item>
+     </ion-list>
+</ion-content>
+</ion-view>
