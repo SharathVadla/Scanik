@@ -176,7 +176,7 @@ $scope.scanBarcode = function() {
 })
 .controller('shippingInfo2Ctrl', function($scope, $stateParams,$location) {
   $scope.gotoShippingMethod=function(){
-window.location="#/app/shippingMethod";
+window.location="#/app/orderSummary";
   }
 })
 .controller('paymentCardsCtrl', function($scope, $stateParams) {
@@ -186,8 +186,8 @@ window.location="#/app/shippingMethod";
   $scope.gotoScanner=function(){
 window.location="#/app/store";
   }
-   $scope.gotoOrderSummary=function(){
-window.location="#/app/orderSummary";
+   $scope.gotoShippingInfo=function(){
+window.location="#/app/shippingInfo2";
   }
   $scope.DeleteProduct=function(){
     $scope.removeItems=true;
