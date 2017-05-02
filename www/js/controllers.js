@@ -129,14 +129,15 @@ $scope.gotoCreditDetails=function(){
 //   }
 $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(imageData) {
-          window.location="#/app/myCart";
-          //alert(imageData.text);
             console.log("Barcode Format -> " + imageData.format);
             console.log("Cancelled -> " + imageData.cancelled);
+            if(imageData.cancelled==0){
+            window.location="#/app/myCart";
+            } 
         }, function(error) {
             console.log("An error happened -> " + error);
         },
-        {
+        { 
           preferFrontCamera : true, // iOS and Android
           showFlipCameraButton : true, // iOS and Android
           showTorchButton : true, // iOS and Android
@@ -148,6 +149,7 @@ $scope.scanBarcode = function() {
           disableAnimations : true, // iOS
           disableSuccessBeep: false // iOS
       }
+      
         );
     };
   
@@ -160,7 +162,7 @@ $scope.scanBarcode = function() {
 })
 .controller('paymentMethodCtrl', function($scope, $stateParams,$location) {
   $scope.orderSuccess=function(){
-    alert("Order Successfull");
+    window.location="#/app/reciept";
   }
 })
 .controller('orderSummaryCtrl', function($scope, $stateParams,$cordovaBarcodeScanner,$location) {
@@ -175,11 +177,17 @@ $scope.scanBarcode = function() {
   
 })
 .controller('shippingInfo2Ctrl', function($scope, $stateParams,$location) {
-  $scope.gotoShippingMethod=function(){
-window.location="#/app/orderSummary";
+  $scope.gotoShippingContact=function(){
+window.location="#/app/shippingContact";
   }
 })
 .controller('paymentCardsCtrl', function($scope, $stateParams) {
+  
+})
+.controller('shippingContactCtrl', function($scope, $stateParams,$location) {
+  $scope.gotoOrderSummary=function(){
+    window.location="#/app/orderSummary";
+  }
   
 })
 .controller('myCartCtrl', function($scope, $stateParams,$location) {
@@ -193,5 +201,8 @@ window.location="#/app/shippingInfo2";
     $scope.removeItems=true;
     alert("Are you sure want to remove this item?");
   }
+})
+.controller('recieptCtrl', function($scope, $stateParams) {
+  
 });
 

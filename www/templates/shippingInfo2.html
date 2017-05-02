@@ -7,31 +7,33 @@
       <ion-item class="screen_bg titleStyle" style="text-align: center">
         Select Shipping Address
       </ion-item>
-      <ion-item class="item item-icon-left"  href="" ng-click="gotoShippingMethod()">
+      <ion-item class="item item-icon-left"  href="" ng-click="gotoOrderSummary()" ng-show="firstName">
       <i class=" icon ion-ios-cart"></i>
-        Shipping Address 1
+       Name: {{firstName}}<br>
+       Mobile:{{number}}<br>
+       Address:{{address1}},{{address2}},{{address3}},{{address4}},{{address5}}
         <i class="item-icon-left ion-chevron-right rightArrow"></i>
       </ion-item >
-      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingMethod()">
+      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingContact()">
       <i class=" icon ion-ios-cart"></i>
-        Shipping Address 2
+        Add new Address
         <i class="item-icon-left ion-chevron-right rightArrow"></i>
       </ion-item>
-      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingMethod()">
+      <!--<ion-item class="item item-icon-left" href="" ng-click="gotoShippingContact()">
       <i class=" icon ion-ios-cart"></i>
         Shipping Address 3
         <i class="item-icon-left ion-chevron-right rightArrow"></i>
       </ion-item>
-      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingMethod()">
+      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingContact()">
       <i class=" icon ion-ios-cart"></i>
         Shipping Address 4
         <i class="item-icon-left ion-chevron-right rightArrow"></i>
       </ion-item>
-      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingMethod()">
+      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingContact()">
       <i class=" icon ion-ios-cart"></i>
         Shipping Address 5
         <i class="item-icon-left ion-chevron-right rightArrow"></i>
-      </ion-item>
+      </ion-item>-->
     </ion-list>
   </ion-content>
 </ion-view>

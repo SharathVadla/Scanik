@@ -1,0 +1,79 @@
+<ion-view view-title="SCANIK" class="screen_bg" cache-view="false">
+  <ion-nav-buttons side="right">        
+    <button class="button button-icon icon ion-bag" ng-click="gotoMycart()"></button>
+</ion-nav-buttons>
+  <ion-content class="screen_bg">
+   <div class="list">
+     <ion-list>
+       <ion-item class="screen_bg titleStyle" style="text-align:center">    
+       Shipping Information
+       </ion-item>
+        <ion-item class="screen_bg">
+       <button class="button button-block button-outline button-light icon-right ion-person-add" ng-model="getContact" ng-change="getContact" ng-click="getContact()">Select Contact </button>
+       </ion-item>
+     </ion-list>
+     <div class="row">
+       <div class="col col-50">
+  <label class="item item-input item-floating-label">
+    <span class="input-label">First Name</span>
+    <input type="text" placeholder="First Name" name="name" ng-change="firstName" ng-model="firstName" required>
+  </label>
+ </div>
+ <div class="col col-50">
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Last Name</span>
+    <input type="text" placeholder="Last Name"name="Lname" ng-change="lastName" ng-model="lastName" required>
+  </label>
+ </div>
+     </div>
+
+ <label class="item item-input item-floating-label" ng-controller="shippingAddressCtrl">
+    <span class="input-label">Mobile Number</span>
+    <input type="text" placeholder="Select Mobile Number"  ng-bind="selectedContacts" name="Naddress1" ng-change="number" ng-model="number" ng-click="pickContact()" required>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Address Line 1</span>
+    <input type="text" placeholder="Address Line 1" name="Naddress1" ng-change="address1" ng-model="address1" required>
+  </label>
+
+ <label class="item item-input item-floating-label">
+    <span class="input-label">Address Line 2</span>
+    <input type="text" placeholder="Address Line 2" name="Naddress2" ng-change="addres" ng-model="addres" required>
+  </label>
+
+
+<div class="row">
+      <div class="col col-50">
+   <label class="item item-input item-floating-label">
+    <span class="input-label">Country</span>
+    <input type="text" placeholder="Country" name="NCountry" ng-change="address5" ng-model="address5" required>
+  </label>
+       </div>
+       <div class="col col-50">
+   <label class="item item-input item-floating-label">
+    <span class="input-label">State</span>
+    <input type="text" placeholder="State" name="NState" ng-change="address3" ng-model="address3" required>
+  </label>
+ </div>
+</div>
+
+<div class="row">
+   <div class="col col-50">
+    <label class="item item-input item-floating-label">
+    <span class="input-label"> City</span>
+    <input type="text" placeholder=" City" name="Ncity" ng-change="address2" ng-model="address2" required>
+  </label>
+       </div>
+       <div class="col col-50">
+<label class="item item-input item-floating-label">
+    <span class="input-label"> Zip Code</span>
+    <input type="text" placeholder=" Zip Code" name="Nzipcode" ng-change="address4" ng-model="address4"required>
+  </label>
+       </div>
+</div>
+   <label class="item screen_bg" >
+          <input class="button button-block button-outline button-light" type="submit" value="Proceed" ng-click="gotoOrderSummary()">
+        </label>
+</div>
+  </ion-content>
+</ion-view>

@@ -11,6 +11,15 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
 window.location="#/app/myCart";
   }
   
+  $rootScope.gotoCreditDetails=function(){
+  window.location="#/app/creditDetails";
+}
+$rootScope.orderSuccess=function(){
+    window.location="#/app/reciept";
+  }
+   $rootScope.gotoOrderSummary=function(){
+    window.location="#/app/orderSummary";
+  }
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -53,7 +62,13 @@ window.location="#/app/myCart";
     },function(err){
         console.log('Error: ' + err);
     });
+   // Storing contact details in local storage
+//    var contactObject={
+//   Lfirstname: $rootScope.firstName,
+//   Llastname: $rootScope.lastName,
+// }
 
+// $localStorage.contactData=contactObject;
         }
 })
 
@@ -220,6 +235,24 @@ window.location="#/app/myCart";
       'menuContent': {
         templateUrl: 'templates/myCart.html',
         controller: 'myCartCtrl'
+      }
+    }
+  })
+     .state('app.reciept', {
+    url: '/reciept',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/reciept.html',
+        controller: 'recieptCtrl'
+      }
+    }
+  })
+  .state('app.shippingContact', {
+    url: '/shippingContact',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/shippingContact.html',
+        controller: 'shippingContactCtrl'
       }
     }
   });

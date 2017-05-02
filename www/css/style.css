@@ -48,6 +48,8 @@
   padding-left: inherit;
   height: 50px;
   line-height: 50px;
+  position: relative;
+    right: 70px;
 }
 .itemHeight{
   line-height: 50px;
