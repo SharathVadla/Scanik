@@ -90,68 +90,59 @@ angular.module('starter.controllers', ['ngCordova'])
   }
 })
 .controller('creditCardCtrl', function($scope, $stateParams,$location) {
-$scope.gotoCreditDetails=function(){
-  window.location="#/app/creditDetails";
-}
+
 })
 .controller('shippingInfoCtrl', function($scope, $stateParams,$location) {
-  $scope.gotoShippingAddress=function(){
-    window.location="#/app/shippingAddress";
-  }
+ 
 })
-.controller("shippingAddressCtrl", ['$scope', 'ContactsService','$rootScope', function($scope, ContactsService,$rootScope) {
+.controller("shippingAddressCtrl", ['$scope', 'ContactsService','$rootScope', function($scope, ContactsService,$rootScope,$location) {
 
-      // $scope.name=null;
-      
-
-    //     $scope.pickContact = function() {
-
-    //         navigator.contacts.pickContact(function(contact){
-    //     console.log('The following contact has been selected:' + JSON.stringify(contact));
-    //     $scope.data=contact;
-    //     $rootScope.name=contact.displayName;
-    //     $scope.number=contact.phoneNumbers[0].value;
-    //     console.log($scope.data);
-    // },function(err){
-    //     console.log('Error: ' + err);
-    // });
-
-    //     }
-
-
+    //   $scope.saveShippingAddress=function(user){
+    //   $scope.master=angular.copy(user);
+    //   localStorage.setItem("shippingAddresses",JSON.stringify($scope.master));
+    //   $scope.details=localStorage.getItem("shippingAddresses");
+    //   $scope.details=JSON.parse(localStorage.getItem("shippingAddresses"));
+    //   console.log($scope.details);
+    //  }     
     }])
-.controller('creditDetailsCtrl', function($scope, $stateParams) {
-  
+.controller('creditDetailsCtrl', function($scope, $stateParams,$location) { 
 })
-.controller('storeCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner) {
-//   $scope.gotoShippingMethod=function(){
-//  window.location="#/app/shippingMethod";
-//   }
+.controller('storeCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner,$http) {
+  $scope.gotoRegister=function(){
+ window.location="#/app/register";
+  }
+
 $scope.scanBarcode = function() {
-        $cordovaBarcodeScanner.scan().then(function(imageData) {
-            console.log("Barcode Format -> " + imageData.format);
-            console.log("Cancelled -> " + imageData.cancelled);
-            if(imageData.cancelled==0){
-            window.location="#/app/myCart";
-            } 
-        }, function(error) {
-            console.log("An error happened -> " + error);
-        },
-        { 
-          preferFrontCamera : true, // iOS and Android
-          showFlipCameraButton : true, // iOS and Android
-          showTorchButton : true, // iOS and Android
-          torchOn: true, // Android, launch with the torch switched on (if available)
-          prompt : "Scanik.com", // Android
-          resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-          formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
-          orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
-          disableAnimations : true, // iOS
-          disableSuccessBeep: false // iOS
-      }
+   $http.jsonp('http://scanik.com/apis/product?id=036000291452').then(function(result) {
+    $scope.Mydata = result.data;
+     alert($scope.Mydata.name);
+    });    
+      //   $cordovaBarcodeScanner.scan().then(function(imageData) {
+      //     //$scope.barCodenumber=imageData.text;
+      //       console.log("Barcode Format -> " + imageData.format);
+      //       console.log("Cancelled -> " + imageData.cancelled);
+                 
+      //       if(imageData.cancelled==0){
+      //       window.location="#/app/myCart";
+      //       } 
+      //   }, function(error) {
+      //       console.log("An error happened -> " + error);
+      //   },
+      //   { 
+      //     preferFrontCamera : true, // iOS and Android
+      //     showFlipCameraButton : true, // iOS and Android
+      //     showTorchButton : true, // iOS and Android
+      //     torchOn: true, // Android, launch with the torch switched on (if available)
+      //     prompt : "Scanik.com", // Android
+      //     resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+      //     formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
+      //     orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
+      //     disableAnimations : true, // iOS
+      //     disableSuccessBeep: false // iOS
+      // }
       
-        );
-    };
+      //   );
+     };
   
 })
 .controller('shippingMethodCtrl', function($scope, $stateParams,$location) {
@@ -177,9 +168,7 @@ $scope.scanBarcode = function() {
   
 })
 .controller('shippingInfo2Ctrl', function($scope, $stateParams,$location) {
-  $scope.gotoShippingContact=function(){
-window.location="#/app/shippingContact";
-  }
+  
 })
 .controller('paymentCardsCtrl', function($scope, $stateParams) {
   
@@ -190,10 +179,33 @@ window.location="#/app/shippingContact";
   }
   
 })
-.controller('myCartCtrl', function($scope, $stateParams,$location) {
-  $scope.gotoScanner=function(){
-window.location="#/app/store";
-  }
+.controller('myCartCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner) {
+  //Take this code out later by calling this in storeCtrl
+ $scope.scanBarcode = function() {
+        $cordovaBarcodeScanner.scan().then(function(imageData) {
+            console.log("Barcode Format -> " + imageData.format);
+            console.log("Cancelled -> " + imageData.cancelled);
+            if(imageData.cancelled==0){
+            window.location="#/app/myCart";
+            } 
+        }, function(error) {
+            console.log("An error happened -> " + error);
+        },
+        { 
+          preferFrontCamera : true, // iOS and Android
+          showFlipCameraButton : true, // iOS and Android
+          showTorchButton : true, // iOS and Android
+          torchOn: true, // Android, launch with the torch switched on (if available)
+          prompt : "Scanik.com", // Android
+          resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+          formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
+          orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
+          disableAnimations : true, // iOS
+          disableSuccessBeep: false // iOS
+      }
+      
+        );
+    };
    $scope.gotoShippingInfo=function(){
 window.location="#/app/shippingInfo2";
   }

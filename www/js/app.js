@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
 
-.run(function($ionicPlatform,$rootScope) {
+.run(function($ionicPlatform,$rootScope,$location) {
     $rootScope.gotoMycart=function(){
 window.location="#/app/myCart";
   }
@@ -33,6 +33,104 @@ $rootScope.orderSuccess=function(){
       StatusBar.styleDefault();
     }
   });
+//function which take shipping address id
+ $rootScope.gotoShippingAddress=function(id){
+    $rootScope.index=id;
+    window.location="#/app/shippingAddress";
+  }
+  $rootScope.gotoShippingContact=function(id){
+    $rootScope.index=id;
+    window.location="#/app/shippingContact";
+  }
+  //function for saving credit cards
+  $rootScope.gotoCreditDetails=function(id1){
+        $rootScope.cardIndex=id1;
+  window.location="#/app/creditDetails";
+}
+$rootScope.accNumber=null;
+$rootScope.expDate=null;
+$rootScope.cvv=null;
+$rootScope.zipCode=null;
+$rootScope.accName=null;
+$rootScope.card={};
+$rootScope.saveCreditCard=function(card){
+$rootScope.master1=angular.copy(card);
+       localStorage.setItem("payCards"+$rootScope.cardIndex,JSON.stringify($rootScope.master1));
+        if($rootScope.cardIndex==1)
+       {
+               $rootScope.card1=JSON.parse(localStorage.getItem("payCards"+$rootScope.cardIndex));
+       }
+       if($rootScope.cardIndex==2)
+       {
+               $rootScope.card2=JSON.parse(localStorage.getItem("payCards"+$rootScope.cardIndex));
+       }
+       if($rootScope.cardIndex==3)
+       {
+               $rootScope.card3=JSON.parse(localStorage.getItem("payCards"+$rootScope.cardIndex));
+       }
+        if($rootScope.cardIndex==4)
+       {
+               $rootScope.card4=JSON.parse(localStorage.getItem("payCards"+$rootScope.cardIndex));
+       }
+       if($rootScope.cardIndex==5)
+       {
+               $rootScope.card5=JSON.parse(localStorage.getItem("payCards"+$rootScope.cardIndex));
+       }
+    window.location="#/app/creditCard";
+}
+
+
+  //function for saveShippingAddress
+   $rootScope.saveShippingAddress=function(fn,ln,mb,a1,a2,a3,a4,a5,a6){
+      var user={
+         firstName:fn,
+         lastName:ln,
+         number:mb,
+         address1:a1,
+         address2:a2,
+         address3:a3,
+         address4:a4,
+         address5:a5,
+       };
+       $rootScope.master=angular.copy(user);
+
+       localStorage.setItem("shippingAddresses"+$rootScope.index,JSON.stringify($rootScope.master));
+      //  $scope.details=localStorage.getItem("shippingAddresses");
+       if($rootScope.index==1)
+       {
+               $rootScope.details1=JSON.parse(localStorage.getItem("shippingAddresses"+$rootScope.index));
+        console.log($rootScope.details1.firstName);
+       }
+       if($rootScope.index==2)
+       {
+               $rootScope.details2=JSON.parse(localStorage.getItem("shippingAddresses"+$rootScope.index));
+               console.log($rootScope.details2.firstName);
+       }
+       if($rootScope.index==3)
+       {
+               $rootScope.details3=JSON.parse(localStorage.getItem("shippingAddresses"+$rootScope.index));
+               console.log($rootScope.details3.firstName);
+       }
+        if($rootScope.index==4)
+       {
+               $rootScope.details4=JSON.parse(localStorage.getItem("shippingAddresses"+$rootScope.index));
+               console.log($rootScope.details4.firstName);
+       }
+        if($rootScope.index==5)
+       {
+               $rootScope.details5=JSON.parse(localStorage.getItem("shippingAddresses"+$rootScope.index));
+               console.log($rootScope.details5.firstName);
+       }
+       if($rootScope.index==6)
+       {
+               $rootScope.details6=JSON.parse(localStorage.getItem("shippingAddresses"+$rootScope.index));
+               console.log($rootScope.details6.firstName);
+               window.location="#/app/shippingInfo2";
+       }
+
+       window.location="#/app/shippingInfo";
+     }
+//start of pick contact function
    $rootScope.data=null;
         $rootScope.firstName=null;
         $rootScope.lastName=null;
@@ -41,7 +139,7 @@ $rootScope.orderSuccess=function(){
          $rootScope.address2=null;
          $rootScope.address3=null;
          $rootScope.address4=null;
-        $rootScope.address5=null;
+        //$rootScope.address5=null;
         $rootScope.getContact = function() {
 
             navigator.contacts.pickContact(function(contact){
@@ -56,20 +154,14 @@ $rootScope.orderSuccess=function(){
          $rootScope.address2=contact.addresses[0].locality;
          $rootScope.address3=contact.addresses[0].region;
          $rootScope.address4=contact.addresses[0].postalCode;
-        $rootScope.address5=contact.addresses[0].country;
+       // $rootScope.address5=contact.addresses[0].country;
          });
         //console.log($scope.data);
     },function(err){
         console.log('Error: ' + err);
     });
-   // Storing contact details in local storage
-//    var contactObject={
-//   Lfirstname: $rootScope.firstName,
-//   Llastname: $rootScope.lastName,
-// }
-
-// $localStorage.contactData=contactObject;
         }
+  //End of pick contact function
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

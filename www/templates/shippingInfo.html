@@ -5,32 +5,82 @@
   <ion-content class="screen_bg">
     <ion-list>
       <ion-item class="screen_bg titleStyle" style="text-align: center">
-        Shipping Information
+         Enter shipping Addresses
       </ion-item>
-      <ion-item class="item item-icon-left"  href="" ng-click="gotoShippingAddress()" ng-model="Address1" ng-change="Address1">
+      <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoShippingAddress(1)" ng-model="shipping.Address1" ng-change="Address1">
       <i class=" icon ion-ios-cart"></i>
-        Shipping Address 1
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
+      <b ng-hide="details1.firstName">Shipping Address 1</b>
+      <div class="list list-inset" ng-show="details1.firstName">
+          <div class="item disableHeight screen_bg">
+          <b>{{details1.firstName}}&nbsp&nbsp{{details1.lastName}}</b><br>
+          {{details1.address1}}&nbsp&nbsp{{details1.address2}}<br>
+          {{details1.address3}}&nbsp&nbsp{{details1.address4}}<br>
+          </div>
+          <!--<div class="item disableHeight screen_bg">
+            {{details1.number}}
+          </div>-->
+         </div>
+        <i class="item-icon-left ion-chevron-right rightArrow" ng-hide="details1.firstName"></i>
+        <i class="item-icon-left ion-trash-a rightArrow" ng-show="details1.firstName"></i>
+
       </ion-item >
-      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingAddress()" ng-model="Address2" ng-change="Address2">
+      <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoShippingAddress(2)" ng-model="shipping.Address2" ng-change="Address2">
       <i class=" icon ion-ios-cart"></i>
-        Shipping Address 2
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
+        <b ng-hide="details2.firstName">Shipping Address 2</b>
+      <div class="list list-inset" ng-show="details2.firstName">
+          <div class="item disableHeight screen_bg">
+          <b>{{details2.firstName}}&nbsp&nbsp{{details2.lastName}}</b><br>
+           {{details2.address1}}&nbsp&nbsp{{details2.address2}}<br>
+          {{details2.address3}}&nbsp&nbsp{{details2.address4}}<br>
+          </div>
+         </div>
+        <i class="item-icon-left ion-chevron-right rightArrow" ng-hide="details2.firstName"></i>
+        <i class="item-icon-left ion-trash-a rightArrow" ng-show="details2.firstName"></i>
+
       </ion-item>
-      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingAddress()" ng-model="Address3"  ng-change="Address3">
+      <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoShippingAddress(3)" ng-model="Address3"  ng-change="Address3">
       <i class=" icon ion-ios-cart"></i>
-        Shipping Address 3
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
+         <b ng-hide="details3.firstName">Shipping Address 3</b>
+      <div class="list list-inset" ng-show="details3.firstName">
+          <div class="item disableHeight screen_bg">
+          <b>{{details3.firstName}}&nbsp&nbsp{{details3.lastName}}</b><br>
+           {{details3.address1}}&nbsp&nbsp{{details3.address2}}<br>
+          {{details3.address3}}&nbsp&nbsp{{details3.address4}}<br>
+          </div>
+         </div>
+        <i class="item-icon-left ion-chevron-right rightArrow" ng-hide="details3.firstName"></i>
+        <i class="item-icon-left ion-trash-a rightArrow" ng-show="details3.firstName"></i>
+
       </ion-item>
-      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingAddress()" ng-model="Address4" ng-change="Address4">
+      <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoShippingAddress(4)" ng-model="Address4" ng-change="Address4">
       <i class=" icon ion-ios-cart"></i>
-        Shipping Address 4
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
+       <i class=" icon ion-ios-cart"></i>
+         <b ng-hide="details4.firstName">Shipping Address 4</b>
+      <div class="list list-inset" ng-show="details4.firstName">
+          <div class="item disableHeight screen_bg">
+          <b>{{details4.firstName}}&nbsp&nbsp{{details4.lastName}}</b><br>
+           {{details4.address1}}&nbsp&nbsp{{details4.address2}}<br>
+          {{details4.address3}}&nbsp&nbsp{{details4.address4}}<br>
+          </div>
+         </div>
+        <i class="item-icon-left ion-chevron-right rightArrow" ng-hide="details4.firstName"></i>
+        <i class="item-icon-left ion-trash-a rightArrow" ng-show="details4.firstName"></i>
+
       </ion-item>
-      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingAddress()" ng-model="Address5" ng-change="Address5">
+      <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoShippingAddress(5)" ng-model="Address5" ng-change="Address5">
       <i class=" icon ion-ios-cart"></i>
-        Shipping Address 5
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
+       <i class=" icon ion-ios-cart"></i>
+         <b ng-hide="details5.firstName">Shipping Address 5</b>
+      <div class="list list-inset" ng-show="details5.firstName">
+          <div class="item disableHeight screen_bg">
+          <b>{{details5.firstName}}&nbsp&nbsp{{details5.lastName}}</b><br>
+           {{details5.address1}}&nbsp&nbsp{{details5.address2}}<br>
+          {{details5.address3}}&nbsp&nbsp{{details5.address4}}<br>
+          </div>
+         </div>
+        <i class="item-icon-left ion-chevron-right rightArrow" ng-hide="details5.firstName"></i>
+        <i class="item-icon-left ion-trash-a rightArrow" ng-show="details5.firstName"></i>
+
       </ion-item>
     </ion-list>
   </ion-content>

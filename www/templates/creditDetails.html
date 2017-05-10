@@ -8,23 +8,28 @@
        <ion-item class="screen_bg titleStyle" style="text-align:center">   
       Credit Card Information
        </ion-item>
+       <form ng-submit="saveCreditCard(card)" novalidate>
     <ion-item class="screen_bg">
      <div class="list list-inset">
      <label class="item item-input">
     <span class="input-label">Card No.</span>
-    <input type="number" style="color: black">
+    <input type="number" ng-model="card.accNumber" style="color: black" required>
   </label>
   <label class="item item-input">
     <span class="input-label">Expiry Date</span>
-    <input type="date" style="color: black">
+    <input type="date" ng-model="card.expDate" style="color: black" required>
   </label>
    <label class="item item-input">
     <span class="input-label">CVV Code</span>
-    <input type="number" style="color: black">
+    <input type="number" ng-model="card.cvv" style="color: black" required>
+  </label>
+  <label class="item item-input">
+    <span class="input-label">Name</span>
+    <input type="text" ng-model="card.accName" style="color: black" required>
   </label>
   <label class="item item-input">
     <span class="input-label">Zip Code</span>
-    <input type="number" style="color: black">
+    <input type="number" ng-model="card.zipCode" style="color: black" required>
   </label>
      </div>
     </ion-item>
@@ -32,10 +37,12 @@
         <img src="img/cardsLogo.png" style="width: 100%;
     padding-left: initial;">
     </ion-item>
-   </ion-list>
-   <label class="item screen_bg" >
-          <input class="button button-block button-outline button-light" type="submit" value="Pay now" ng-click="orderSuccess()">
+    <label class="item screen_bg" >
+          <input class="button button-block button-outline button-light" type="submit" value="Save">
         </label>
+  </form>
+   </ion-list>
+   
 </div>
   </ion-content>
 </ion-view>

@@ -7,36 +7,66 @@
       <ion-item class="screen_bg titleStyle" style="text-align: center">
         Select Payment Method
       </ion-item>
-      <ion-item class="item item-icon-left" href="" ng-click="gotoCreditDetails()">
-      <!--<i class="icon ion-card"></i>-->
-       <img src="img/visa.png" class="logosStyle1">
-        <h2 class="item-text-center">Credit Card</h2>
+       <ion-item class="item item-icon-left itemHeight" href="" ng-show="card1.accNumber">
+      <i class="icon ion-card"></i>
+        <div class="list list-inset" >
+          <div class="item disableHeight screen_bg">
+          <b>Name:{{card1.accName}}<br>Account No:{{card1.accNumber}}</b><br>
+           Zip Code:{{card1.zipCode}}</div>
+         </div>
         <i class="item-icon-left ion-chevron-right rightArrow"></i>
       </ion-item >
-      <ion-item class="item item-icon-left" href="" ng-click="gotoCreditDetails()">
+      <ion-item class="item item-icon-left itemHeight" href="" ng-show="card2.accNumber">
+      <i class="icon ion-card"></i>
+        <div class="list list-inset" >
+          <div class="item disableHeight screen_bg">
+          <b>Name:{{card2.accName}}<br>Account No:{{card2.accNumber}}</b><br>
+           Zip Code:{{card2.zipCode}}</div>
+         </div>
+        <i class="item-icon-left ion-chevron-right rightArrow "></i>
+      </ion-item>
+      <ion-item class="item item-icon-left itemHeight" href="" ng-show="card3.accNumber">
+      <i class="icon ion-card"></i>
+       <b ng-hide="card3.accNumber">Credit card 3</b>
+        <div class="list list-inset">
+          <div class="item disableHeight screen_bg">
+          <b>Name:{{card3.accName}}<br>Account No:{{card3.accNumber}}</b><br>
+           Zip Code:{{card3.zipCode}}</div>
+         </div>        
+         <i class="item-icon-left ion-chevron-right rightArrow"></i>
+      </ion-item>
+      <ion-item class="item item-icon-left itemHeight" href="" ng-show="card4.accNumber">
+      <i class="icon ion-card"></i>
+        <b ng-hide="card4.accNumber">Credit card 4</b>
+        <div class="list list-inset">
+          <div class="item disableHeight screen_bg">
+          <b>Name:{{card4.accName}}<br>Account No:{{card4.accNumber}}</b><br>
+           Zip Code:{{card4.zipCode}}</div>
+         </div>
+        <i class="item-icon-left ion-chevron-right rightArrow"></i>
+      </ion-item>
+      <ion-item class="item item-icon-left itemHeight" href="" ng-show="card5.accNumber">
+      <i class="icon ion-card"></i>
+        <b ng-hide="card5.accNumber">Credit card 5</b>
+        <div class="list list-inset">
+          <div class="item disableHeight screen_bg">
+          <b>Name:{{card5.accName}}<br>Account No:{{card5.accNumber}}</b><br>
+           Zip Code:{{card5.zipCode}}</div>
+         </div>
+        <i class="item-icon-left ion-chevron-right rightArrow"></i>
+      </ion-item>
+      <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoCreditDetails()">
       <!--<i class="icon ion-card"></i>-->
-              <img src="img/american.png" class="logosStyle1"> 
-        <h2 class="item-text-center">Debit Card</h2>
+       <img src="img/visa.png" class="ion-card logosStyle1">
+        Credit Card
         <i class="item-icon-left ion-chevron-right rightArrow"></i>
-      </ion-item>
-      <ion-item class="item item-icon-left" href="" ng-click="gotoCreditDetails()()">
+      </ion-item >
+      <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoCreditDetails()">
       <!--<i class="icon ion-card"></i>-->
-                 <img src="img/mastercard.png" class="logosStyle1">
-       <h2 class="item-text-center">Net Banking</h2>
+              <img src="img/american.png" class="ion-card logosStyle1"> 
+        Debit Card
         <i class="item-icon-left ion-chevron-right rightArrow"></i>
       </ion-item>
-      <ion-item class="item item-icon-left" href="" ng-click="orderSuccess()">
-      
-          <img src="img/discover.png" class="logosStyle1">
-                <h2 class="item-text-center">Cash on delivery</h2>
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
-      </ion-item>
-      <!--<ion-item class="item item-icon-left" href="" ng-click="orderSuccess()">
-      
-      <img src="img/paypal.png" class="logosStyle1">
-               <h2 class="item-text-center">Card 5</h2>
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
-      </ion-item>-->
     </ion-list>
   </ion-content>
 </ion-view>

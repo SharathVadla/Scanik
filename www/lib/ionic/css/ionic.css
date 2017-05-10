@@ -3352,7 +3352,7 @@ body.grade-c {
 
 .scroll-content {
   position: absolute;
-  background: url("..\scanik-bg2.jpg");
+  background-color: #0D5599;
   top: 0;
   right: 0;
   bottom: 0;

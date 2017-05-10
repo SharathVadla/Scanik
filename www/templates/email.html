@@ -3,13 +3,25 @@
    <div class="list">
      <ion-list>
        <ion-item class="screen_bg titleStyle" style="text-align:center">   
-      Please enter your Email Id(step-1)
+      Please enter your Details(step-1)
        </ion-item>
      </ion-list>
    <form ng-submit="gotoCreditcard()">
   <label class="item item-input item-floating-label">
     <span class="input-label">Email</span>
     <input type="text" placeholder="Enter Email" name="email" ng-model="email" required>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Name</span>
+    <input type="text" placeholder="Enter name" name="email" ng-model="name" required>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Address</span>
+    <input type="text" placeholder="Enter address" name="email" ng-model="address" required>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Phone Number</span>
+    <input type="text" placeholder="Enter phone number" name="email" ng-model="pNo" required>
   </label>
    <label class="item screen_bg" >
           <input class="button button-block button-outline button-light" type="submit" value="Next">
