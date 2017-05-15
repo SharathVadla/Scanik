@@ -12,25 +12,26 @@
        <button class="button button-block button-outline button-light icon-right ion-person-add" ng-model="getContact" ng-change="getContact" ng-click="getContact()">Select Contact </button>
        </ion-item>
      </ion-list>
-     <form method="POST" ng-submit="saveShippingAddress(firstName,lastName,number,address1,addres,address5,address3,address2,address4)">
-     <div class="row">
-    <div class="col col-50">
+     <form method="POST" ng-submit="saveShippingAddress(firstName,lastName,nickName,number,address1,addres,address5,address3,address2,address4,1)">
+  <div class="row">
+   <div class="col col-50">  
   <label class="item item-input item-floating-label">
     <span class="input-label">First Name</span>
     <input type="text" placeholder="First Name" name="name" ng-change="firstName" ng-model="firstName" required>
   </label>
- </div>
- <div class="col col-50">
+   </div>
+      <div class="col col-50"> 
   <label class="item item-input item-floating-label">
     <span class="input-label">Last Name</span>
     <input type="text" placeholder="Last Name"name="Lname" ng-change="lastName" ng-model="lastName" required>
   </label>
- </div>
-     </div>
+      </div>
+  </div>
+ 
      
    <label class="item item-input item-floating-label">
     <span class="input-label">Nick Name(optional)</span>
-    <input type="text" placeholder="Nick Name(optional)" name="nickName" ng-change="nickName" ng-model="nickName" required>
+    <input type="text" placeholder="Nick Name(optional)" name="nickName" ng-change="nickName" ng-model="nickName">
   </label>
 
  <label class="item item-input item-floating-label" ng-controller="shippingAddressCtrl">
@@ -44,7 +45,7 @@
 
  <label class="item item-input item-floating-label">
     <span class="input-label">Address Line 2(optional)</span>
-    <input type="text" placeholder="Address Line 2(optional)" name="Naddress2" ng-change="addres" ng-model="addres" required>
+    <input type="text" placeholder="Address Line 2(optional)" name="Naddress2" ng-change="addres" ng-model="addres">
   </label>
 
    <label class="item item-input item-floating-label">

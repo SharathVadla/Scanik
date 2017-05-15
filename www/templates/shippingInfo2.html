@@ -8,91 +8,67 @@
         Select Shipping Address
       </ion-item>
       <form method="POST" ng-submit="gotoOrderSummary()">
-      <ion-item class="item item-icon-left itemHeight" href=""  ng-show="details1.firstName"> 
-        <div style="float: left"><input type="radio" name="" value=""></div>
-        <div class="list list-inset">
-          <div class="item disableHeight screen_bg">
-          <b>{{details1.firstName}}&nbsp&nbsp{{details1.lastName}}</b><br>
-          {{details1.address1}}&nbsp&nbsp{{details1.address2}}<br>
-          {{details1.address3}}&nbsp&nbsp{{details1.address4}}<br>
-          </div>
-         </div>      
+      <ion-item class="item item-icon-left itemHeight" ng-hide="details1.firstName" href="" ng-click="gotoShippingContact(1)"> 
+        <b>Shipping Address 1</b>   
+      </ion-item> 
+      <ion-item class="item item-icon-left itemHeight" ng-show="details1.firstName" class="screen_bg"> 
+        <i class="icon">          
+          <input type="radio" name="selectedAddress" ng-model="selectedAddress" class="radioStyle"></i> 
+          <div class="screen_bg">
+          <b ng-hide="details1.nickName">{{details1.firstName}}&nbsp&nbsp{{details1.lastName}}</b><b>{{details1.nickName}}</b><br>
+          </div> 
+          <i class="item-icon-left rightArrow"> 
+          <input type="button" ng-click="gotoShippingContact(1)" value="edit"> </i>    
       </ion-item>
 
-      <ion-item class="item item-icon-left itemHeight" href="" ng-show="details2.firstName">
-                <div style="float: left"><input type="radio" name="" value=""></div>
-      <div class="list list-inset">
-          <div class="item disableHeight screen_bg">
-          <b>{{details2.firstName}}&nbsp&nbsp{{details2.lastName}}</b><br>
-           {{details2.address1}}&nbsp&nbsp{{details2.address2}}<br>
-          {{details2.address3}}&nbsp&nbsp{{details2.address4}}<br>
-          </div>
-         </div>
+      <ion-item class="item item-icon-left itemHeight" ng-hide="details2.firstName" href="" ng-click="gotoShippingContact(2)">
+                <b>Shipping Address 2</b>        
+      </ion-item>
+      <ion-item class="item item-icon-left itemHeight" ng-show="details2.firstName" class="screen_bg">            
+          <i class="icon"><input type="radio" name="selectedAddress" ng-model="selectedAddress" class="radioStyle" ></i>
+          <div class="screen_bg">
+          <b  ng-hide="details2.nickName">{{details2.firstName}}&nbsp&nbsp{{details2.lastName}}</b><b>{{details2.nickName}}</b><br>
+          </div>  
+           <i class="item-icon-left rightArrow">
+                    <input type="button" ng-click="gotoShippingContact(2)" value="edit"></i> 
       </ion-item>
 
-      <ion-item class="item item-icon-left itemHeight"  href="" ng-show="details3.firstName">
-                <div style="float: left"><input type="radio" name="" value=""></div>
-      <div class="list list-inset">
-          <div class="item disableHeight screen_bg">
-          <b>{{details3.firstName}}&nbsp&nbsp{{details3.lastName}}</b><br>
-           {{details3.address1}}&nbsp&nbsp{{details3.address2}}<br>
-          {{details3.address3}}&nbsp&nbsp{{details3.address4}}<br>
-          </div>
-         </div>
+      <ion-item class="item item-icon-left itemHeight"  ng-hide="details3.firstName" href="" ng-click="gotoShippingContact(3)">
+              <b>Shipping Address 3</b>  
       </ion-item>
-    <ion-item class="item item-icon-left itemHeight"  href="" ng-show="details4.firstName">
-                <div style="float: left"><input type="radio" name="" value=""></div>
-       <div class="list list-inset">
-          <div class="item disableHeight screen_bg">
-          <b>{{details4.firstName}}&nbsp&nbsp{{details4.lastName}}</b><br>
-           {{details4.address1}}&nbsp&nbsp{{details4.address2}}<br>
-          {{details4.address3}}&nbsp&nbsp{{details4.address4}}<br>
+      <ion-item class="item item-icon-left itemHeight" ng-show="details3.firstName" class="screen_bg">                
+                <i class="icon"> <input type="radio" name="selectedAddress" ng-model="selectedAddress" class="radioStyle" ></i>
+          <div class=" screen_bg">
+          <b  ng-hide="details3.nickName">{{details3.firstName}}&nbsp&nbsp{{details3.lastName}}</b><b>{{details3.nickName}}</b><br>
           </div>
-         </div>
+          <i class="item-icon-left rightArrow">
+                  <input type="button" ng-click="gotoShippingContact(3)" value="edit">  </i>    
+      </ion-item>
+
+    <ion-item class="item item-icon-left itemHeight"  ng-hide="details4.firstName" href="" ng-click="gotoShippingContact(4)">
+            <b>Shipping Address 4</b> 
+    </ion-item>
+    <ion-item class="item item-icon-left itemHeight" ng-show="details4.firstName" class="screen_bg">                  
+        <i class="icon"> <input type="radio" name="selectedAddress" ng-model="selectedAddress" class="radioStyle" ></i>
+                <div class="screen_bg">
+          <b ng-hide="details4.nickName">{{details4.firstName}}&nbsp&nbsp{{details4.lastName}}</b><b>{{details4.nickName}}</b><br>
+          </div>
+           <i class="item-icon-left rightArrow">
+              <input type="button" ng-click="gotoShippingContact(4)"     value="edit"> </i>         
    </ion-item>
 
-  <ion-item class="item item-icon-left itemHeight"  href="" ng-show="details5.firstName">
-                <div style="float: left"><input type="radio" name="" value=""></div>
-         <div class="list list-inset">
-          <div class="item disableHeight screen_bg">
-          <b>{{details5.firstName}}&nbsp&nbsp{{details5.lastName}}</b><br>
-           {{details5.address1}}&nbsp&nbsp{{details5.address2}}<br>
-          {{details5.address3}}&nbsp&nbsp{{details5.address4}}<br>
-          </div>
-         </div>
+  <ion-item class="item item-icon-left itemHeight" ng-hide="details5.firstName" href="" ng-click="gotoShippingContact(5)">
+            <b>Shipping Address 5</b>     
+  </ion-item>
+  <ion-item class="item item-icon-left itemHeight" ng-show="details5.firstName" class="screen_bg">      
+        <i class="icon"> <input type="radio" name="selectedAddress" ng-model="selectedAddress" class="radioStyle" ></i>
+        <div class="screen_bg">
+          <b  ng-hide="details5.nickName">{{details5.firstName}}&nbsp&nbsp{{details5.lastName}}</b><b>{{details5.nickName}}</b><br>
+        </div> 
+         <i class="item-icon-left rightArrow">
+                <input type="button" ng-click="gotoShippingContact(5)" value="edit"></i>  
        </ion-item>
-
-       <ion-item class="item item-icon-left itemHeight"  href="" ng-show="details5.firstName">
-                <div style="float: left"><input type="radio" name="" value=""></div>
-         <div class="list list-inset" ng-show="details5.firstName">
-          <div class="item disableHeight screen_bg">
-          <b>{{details6.firstName}}&nbsp&nbsp{{details6.lastName}}</b><br>
-           {{details6.address1}}&nbsp&nbsp{{details6.address2}}<br>
-          {{details6.address3}}&nbsp&nbsp{{details6.address4}}<br>
-          </div>
-         </div>
-       </ion-item>
-      <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoShippingContact(6)" ng-hide="details6.firstName">
-      <i class=" icon ion-ios-cart"></i>
-        Add new Address
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
-      </ion-item>
-      <!--<ion-item class="item item-icon-left" href="" ng-click="gotoShippingContact()">
-      <i class=" icon ion-ios-cart"></i>
-        Shipping Address 3
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
-      </ion-item>
-      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingContact()">
-      <i class=" icon ion-ios-cart"></i>
-        Shipping Address 4
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
-      </ion-item>
-      <ion-item class="item item-icon-left" href="" ng-click="gotoShippingContact()">
-      <i class=" icon ion-ios-cart"></i>
-        Shipping Address 5
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
-      </ion-item>-->
-       <label class="item screen_bg" ng-show="firstName">
+       <label class="item screen_bg" ng-show="details1.firstName">
           <input class="button button-block button-outline button-light" type="submit" value="Proceed">
         </label>
       </form>

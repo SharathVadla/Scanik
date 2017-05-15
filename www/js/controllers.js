@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ngCordova'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,$location) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,$location,$rootScope) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -8,7 +8,11 @@ angular.module('starter.controllers', ['ngCordova'])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
+$rootScope.Pname=null;
+$rootScope.Pcost=null;
+$rootScope.Pcost1=null;
+$rootScope.Pname1=null;
+$rootScope.Total=null;
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -90,7 +94,9 @@ angular.module('starter.controllers', ['ngCordova'])
   }
 })
 .controller('creditCardCtrl', function($scope, $stateParams,$location) {
-
+  $scope.goToShippingInfo=function(){
+  window.location="#/app/shippingInfo";
+  }
 })
 .controller('shippingInfoCtrl', function($scope, $stateParams,$location) {
  
@@ -107,44 +113,63 @@ angular.module('starter.controllers', ['ngCordova'])
     }])
 .controller('creditDetailsCtrl', function($scope, $stateParams,$location) { 
 })
-.controller('storeCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner,$http) {
+.controller('creditDetails2Ctrl', function($scope, $stateParams,$location) { 
+})
+.controller('storeCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner,$http,$rootScope) {
   $scope.gotoRegister=function(){
  window.location="#/app/register";
   }
 
-$scope.scanBarcode = function() {
-   $http.jsonp('http://scanik.com/apis/product?id=036000291452').then(function(result) {
-    $scope.Mydata = result.data;
-     alert($scope.Mydata.name);
-    });    
-      //   $cordovaBarcodeScanner.scan().then(function(imageData) {
-      //     //$scope.barCodenumber=imageData.text;
-      //       console.log("Barcode Format -> " + imageData.format);
-      //       console.log("Cancelled -> " + imageData.cancelled);
-                 
-      //       if(imageData.cancelled==0){
-      //       window.location="#/app/myCart";
-      //       } 
-      //   }, function(error) {
-      //       console.log("An error happened -> " + error);
-      //   },
-      //   { 
-      //     preferFrontCamera : true, // iOS and Android
-      //     showFlipCameraButton : true, // iOS and Android
-      //     showTorchButton : true, // iOS and Android
-      //     torchOn: true, // Android, launch with the torch switched on (if available)
-      //     prompt : "Scanik.com", // Android
-      //     resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-      //     formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
-      //     orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
-      //     disableAnimations : true, // iOS
-      //     disableSuccessBeep: false // iOS
-      // }
+$scope.scanBarcode = function() {     
+        $cordovaBarcodeScanner.scan().then(function(imageData) {
+          $scope.barCodenumber=imageData.text;
+            console.log("Barcode Format -> " + imageData.format);
+            console.log("Cancelled -> " + imageData.cancelled);
+ 
+             $http({
+    "method":"get",
+    "url" : "http://scanik.com/apis/product?id="+ $scope.barCodenumber,
+    "data":{"id":  $scope.barCodenumber}
+  }).then(function(result) {
+
+          console.log(result);
+            $scope.response = result.data;
+            $rootScope.Pname=$scope.response[0].name;
+            $rootScope.Pcost=$scope.response[0].original_price;
+            console.log($rootScope.Pname);
+            console.log($rootScope.Pcost);
+             $rootScope.Total= parseFloat($rootScope.Pcost);
+            
+        },function(error){
+          console.log(error);
+        });
+        if(imageData.cancelled==0){
+            window.location="#/app/myCart";
+            }           
+             
+
+
+        }, function(error) {
+            console.log("An error happened -> " + error);
+        },
+        { 
+          preferFrontCamera : true, // iOS and Android
+          showFlipCameraButton : true, // iOS and Android
+          showTorchButton : true, // iOS and Android
+          torchOn: true, // Android, launch with the torch switched on (if available)
+          prompt : "Scanik.com", // Android
+          resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+          formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
+          orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
+          disableAnimations : true, // iOS
+          disableSuccessBeep: false // iOS
+      }
       
-      //   );
-     };
-  
+        );
+        
+     }; 
 })
+
 .controller('shippingMethodCtrl', function($scope, $stateParams,$location) {
    $scope.gotoPaymentMethod=function(){
  window.location="#/app/paymentMethod";
@@ -179,12 +204,32 @@ $scope.scanBarcode = function() {
   }
   
 })
-.controller('myCartCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner) {
+.controller('myCartCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner,$http,$rootScope) {
   //Take this code out later by calling this in storeCtrl
  $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(imageData) {
+          $scope.barCodenumber=imageData.text;
             console.log("Barcode Format -> " + imageData.format);
             console.log("Cancelled -> " + imageData.cancelled);
+           $http({
+    "method":"get",
+    "url" : "http://scanik.com/apis/product?id="+ $scope.barCodenumber,
+    "data":{"id":  $scope.barCodenumber}
+  }).then(function(result) {
+
+          console.log(result);
+            $scope.response = result.data;
+            $rootScope.Pname1=$scope.response[0].name;
+            $rootScope.Pcost1=$scope.response[0].original_price;
+            $rootScope.Total= parseFloat($rootScope.Pcost)+ parseFloat($rootScope.Pcost1);
+            console.log($rootScope.Pname);
+            console.log($rootScope.Pcost);
+            
+        },function(error){
+          console.log(error);
+        });
+
+
             if(imageData.cancelled==0){
             window.location="#/app/myCart";
             } 

@@ -7,56 +7,61 @@
       <ion-item class="screen_bg titleStyle" style="text-align: center">
         Enter Credit card Details(step-2) 
       </ion-item>
+      <form method="POST" ng-submit="goToShippingInfo()">
       <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoCreditDetails(1)">
       <i class="icon ion-card"></i>
         <b ng-hide="card1.accNumber">Credit card 1</b>
-        <div class="list list-inset" ng-show="card1.accNumber">
-          <div class="item disableHeight screen_bg">
-          <b>Name:{{card1.accName}}<br>Account No:{{card1.accNumber}}</b><br>
-           Zip Code:{{card1.zipCode}}</div>
+        <div  ng-show="card1.accNumber">
+          <div class=" screen_bg">
+          <b>XXXX-XXXX-XXXX-{{card1.accNumber|limitTo:9:12}}</b>
+           </div>
          </div>
         <i class="item-icon-left ion-chevron-right rightArrow"></i>
       </ion-item >
       <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoCreditDetails(2)">
       <i class="icon ion-card"></i>
         <b ng-hide="card2.accNumber">Credit card 2</b>
-        <div class="list list-inset" ng-show="card2.accNumber">
-          <div class="item disableHeight screen_bg">
-          <b>Name:{{card2.accName}}<br>Account No:{{card2.accNumber}}</b><br>
-           Zip Code:{{card2.zipCode}}</div>
+        <div  ng-show="card2.accNumber">
+          <div class=" screen_bg">
+          <b>XXXX-XXXX-XXXX-{{card2.accNumber|limitTo:9:12}}</b><br>
+           </div>
          </div>
         <i class="item-icon-left ion-chevron-right rightArrow "></i>
       </ion-item>
       <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoCreditDetails(3)">
       <i class="icon ion-card"></i>
        <b ng-hide="card3.accNumber">Credit card 3</b>
-        <div class="list list-inset" ng-show="card3.accNumber">
-          <div class="item disableHeight screen_bg">
-          <b>Name:{{card3.accName}}<br>Account No:{{card3.accNumber}}</b><br>
-           Zip Code:{{card3.zipCode}}</div>
+        <div  ng-show="card3.accNumber">
+          <div class=" screen_bg">
+          <b>XXXX-XXXX-XXXX-{{card3.accNumber|limitTo:9:12}}</b>
+           </div>
          </div>        
          <i class="item-icon-left ion-chevron-right rightArrow"></i>
       </ion-item>
       <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoCreditDetails(4)">
       <i class="icon ion-card"></i>
         <b ng-hide="card4.accNumber">Credit card 4</b>
-        <div class="list list-inset" ng-show="card4.accNumber">
-          <div class="item disableHeight screen_bg">
-          <b>Name:{{card4.accName}}<br>Account No:{{card4.accNumber}}</b><br>
-           Zip Code:{{card4.zipCode}}</div>
+        <div  ng-show="card4.accNumber">
+          <div class=" screen_bg">
+          <b>XXXX-XXXX-XXXX-{{card4.accNumber|limitTo:9:12}}</b>
+           </div>
          </div>
         <i class="item-icon-left ion-chevron-right rightArrow"></i>
       </ion-item>
       <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoCreditDetails(5)">
       <i class="icon ion-card"></i>
         <b ng-hide="card5.accNumber">Credit card 5</b>
-        <div class="list list-inset" ng-show="card5.accNumber">
-          <div class="item disableHeight screen_bg">
-          <b>Name:{{card5.accName}}<br>Account No:{{card5.accNumber}}</b><br>
-           Zip Code:{{card5.zipCode}}</div>
+        <div  ng-show="card5.accNumber">
+          <div class=" screen_bg">
+          <b>XXXX-XXXX-XXXX-{{card5.accNumber|limitTo:9:12}}</b>
+           </div>
          </div>
         <i class="item-icon-left ion-chevron-right rightArrow"></i>
       </ion-item>
+      <label class="item screen_bg" >
+          <input class="button button-block button-outline button-light" type="submit" value="Next">
+        </label>
+      </form>
     </ion-list>
   </ion-content>
 </ion-view>

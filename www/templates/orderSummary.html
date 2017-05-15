@@ -4,7 +4,76 @@
 </ion-nav-buttons>
   <ion-content class="screen_bg" scroll="false">
      <ion-list>
-       <ion-item class="screen_bg titleStyle" style="text-align: center">
+       <ion-item  class="screen_bg" ng-show="Pname">
+         <div class="row">
+         <div class="col col-50">{{Pname|limitTo:11}}</div>
+        <div class="col col-33">${{Pcost}}</div>
+     <div class="col">   
+    <select>
+      <option selected>1</option>
+      <option >2</option>
+      <option>3</option>
+    </select>
+     </div>    
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+         </div>
+       </ion-item>
+  
+      <ion-item  class="screen_bg" ng-show="Pname1">
+         <div class="row">
+         <div class="col col-50">{{Pname1|limitTo:11}}</div>
+        <div class="col col-33">${{Pcost1}}</div>
+         
+         <div class="col">   
+    <select>
+      <option selected>1</option>
+      <option >2</option>
+      <option>3</option>
+    </select>
+     </div> 
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+        </div>
+       </ion-item>
+           <!-- <ion-item  class="screen_bg">
+         <div class="row">
+         <div class="col col-50">Weber Grill</div>
+        <div class="col col-33">$25.00</div>
+        
+        <div class="col">   
+    <select>
+      <option selected>1</option>
+      <option >2</option>
+      <option>3</option>
+    </select>
+     </div> 
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+        </div>
+       </ion-item>
+       
+  
+    <ion-item  class="screen_bg">
+        <div class="row">
+        <div class="col col-50">Shipping Cost</div>
+        <div class="col col-33">$25</div>
+         
+         <div class="col">   
+    <select>
+      <option selected>1</option>
+      <option >2</option>
+      <option>3</option>
+    </select>
+     </div> 
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+        </div>
+   </ion-item>
+
+       <ion-item  class="screen_bg">
+         <div class="row">
+         <div class="col col-50">Total</div>
+        <div class="col col-33"><b>$2575.00</b></div>
+        </div>
+       </ion-item>-->
+       <!--<ion-item class="screen_bg titleStyle" style="text-align: center">
     Order Summary
        </ion-item>  
         <ion-item  class="screen_bg">
@@ -21,11 +90,11 @@
          <div class="col col-50">Total amount:</div>
         <div class="col"><b>$2475.00</b></div>
         </div>
-       </ion-item>
-       <ion-item  class="screen_bg">
+       </ion-item>-->
+       <ion-item  class="screen_bg" ng-show="Total">
          <div class="row">
          <div class="col col-50">Shipping amount:</div>
-        <div class="col"><b>$100.00</b></div>
+        <div class="col"><b>${{Total}}</b></div>
         </div>
        </ion-item>
        <ion-item  class="screen_bg">

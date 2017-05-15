@@ -2,71 +2,96 @@
   <ion-nav-buttons side="right">        
     <button class="button button-icon icon ion-bag" ng-click="gotoMycart()"></button>
 </ion-nav-buttons>
-  <ion-content class="screen_bg" scroll="false">
+  <ion-content class="screen_bg" scroll="true">
      <ion-list>
       <ion-item class="screen_bg titleStyle" style="text-align: center">
         Select Payment Method
       </ion-item>
-       <ion-item class="item item-icon-left itemHeight" href="" ng-show="card1.accNumber">
+      <form method="POST" ng-submit="orderSuccess()">
+       <ion-item class="item item-icon-left itemHeight" href="" ng-hide="card1.accNumber" ng-click="gotoCreditDetails2(1)" >
       <i class="icon ion-card"></i>
-        <div class="list list-inset" >
-          <div class="item disableHeight screen_bg">
-          <b>Name:{{card1.accName}}<br>Account No:{{card1.accNumber}}</b><br>
-           Zip Code:{{card1.zipCode}}</div>
-         </div>
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
-      </ion-item >
-      <ion-item class="item item-icon-left itemHeight" href="" ng-show="card2.accNumber">
-      <i class="icon ion-card"></i>
-        <div class="list list-inset" >
-          <div class="item disableHeight screen_bg">
-          <b>Name:{{card2.accName}}<br>Account No:{{card2.accNumber}}</b><br>
-           Zip Code:{{card2.zipCode}}</div>
-         </div>
-        <i class="item-icon-left ion-chevron-right rightArrow "></i>
+      <b>Credit card 1</b>
+       </ion-item>
+       <ion-item class="item item-icon-left itemHeight" ng-show="card1.accNumber">
+         <i class="icon">
+                <input type="radio" name="selectedCard" ng-model="selectedCard" class="radioStyle"></i>                     
+        
+          <div class="screen_bg ">
+          <b>XXXX-XXXX-XXXX-{{card1.accNumber|limitTo:9:12}}</b></div>
+        <i class="item-icon-left rightArrow"><input type="button" ng-click="gotoCreditDetails2(1)"  value="edit"></i>
       </ion-item>
-      <ion-item class="item item-icon-left itemHeight" href="" ng-show="card3.accNumber">
+      <ion-item class="item item-icon-left itemHeight" href="" ng-hide="card2.accNumber" ng-click="gotoCreditDetails2(2)">
       <i class="icon ion-card"></i>
-       <b ng-hide="card3.accNumber">Credit card 3</b>
-        <div class="list list-inset">
-          <div class="item disableHeight screen_bg">
-          <b>Name:{{card3.accName}}<br>Account No:{{card3.accNumber}}</b><br>
-           Zip Code:{{card3.zipCode}}</div>
-         </div>        
-         <i class="item-icon-left ion-chevron-right rightArrow"></i>
+          <b>Credit card 2</b>
       </ion-item>
-      <ion-item class="item item-icon-left itemHeight" href="" ng-show="card4.accNumber">
+
+      <ion-item class="item item-icon-left itemHeight" ng-show="card2.accNumber">
+         <i class="icon"><input type="radio" name="selectedCard" ng-model="selectedCard" class="radioStyle"></i>  
+          <div class="screen_bg">
+          <b>XXXX-XXXX-XXXX-{{card2.accNumber|limitTo:9:12}}</b>
+           </div>
+      
+        <i class="item-icon-left rightArrow"><input type="button" ng-click="gotoCreditDetails2(2)"  value="edit"></i>
+      </ion-item>
+
+
+      <ion-item class="item item-icon-left itemHeight" href="" ng-hide="card3.accNumber" ng-click="gotoCreditDetails2(3)">
       <i class="icon ion-card"></i>
-        <b ng-hide="card4.accNumber">Credit card 4</b>
-        <div class="list list-inset">
-          <div class="item disableHeight screen_bg">
-          <b>Name:{{card4.accName}}<br>Account No:{{card4.accNumber}}</b><br>
-           Zip Code:{{card4.zipCode}}</div>
-         </div>
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
+      <b>Credit card 3</b>
       </ion-item>
-      <ion-item class="item item-icon-left itemHeight" href="" ng-show="card5.accNumber">
+      <ion-item class="item item-icon-left itemHeight" ng-show="card3.accNumber">
+                   <i class="icon"><input type="radio" name="selectedCard" ng-model="selectedCard" class="radioStyle"></i>
+       
+        
+          <div class="screen_bg ">
+          <b>XXXX-XXXX-XXXX-{{card3.accNumber|limitTo:9:12}}</b>
+           </div>
+                
+         <i class="item-icon-left rightArrow"><input type="button" ng-click="gotoCreditDetails2(3)"  value="edit"></i>
+      </ion-item>
+
+
+      <ion-item class="item item-icon-left itemHeight" href="" ng-hide="card4.accNumber" ng-click="gotoCreditDetails2(4)">
       <i class="icon ion-card"></i>
-        <b ng-hide="card5.accNumber">Credit card 5</b>
-        <div class="list list-inset">
-          <div class="item disableHeight screen_bg">
-          <b>Name:{{card5.accName}}<br>Account No:{{card5.accNumber}}</b><br>
-           Zip Code:{{card5.zipCode}}</div>
-         </div>
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
+      <b>Credit card 4</b>
       </ion-item>
-      <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoCreditDetails()">
-      <!--<i class="icon ion-card"></i>-->
+      
+      <ion-item class="item item-icon-left itemHeight" ng-show="card4.accNumber">
+                     <i class="icon"> <input type="radio" name="selectedCard" ng-model="selectedCard" class="radioStyle"></i>
+          <div class="screen_bg ">
+          <b>XXXX-XXXX-XXXX-{{card4.accNumber|limitTo:9:12}}</b>
+           </div>
+        <i class="item-icon-left rightArrow"><input type="button" ng-click="gotoCreditDetails2(4)"  value="edit"></i>
+      </ion-item>
+     
+     <ion-item class="item item-icon-left itemHeight" href="" ng-hide="card5.accNumber" ng-click="gotoCreditDetails2(5)">
+      <i class="icon ion-card"></i>
+      <b>Credit card 5</b>
+      </ion-item>
+      
+      <ion-item class="item item-icon-left itemHeight" ng-show="card5.accNumber">
+                     <i class="icon"> <input type="radio" name="selectedCard" ng-model="selectedCard" class="radioStyle"></i>
+          <div class="screen_bg ">
+          <b>XXXX-XXXX-XXXX-{{card5.accNumber|limitTo:9:12}}</b>
+           </div>
+        <i class="item-icon-left rightArrow"><input type="button" ng-click="gotoCreditDetails2(5)"  value="edit"></i>
+      </ion-item>
+      <label class="item screen_bg" ng-show="card1.accNumber">
+          <input class="button button-block button-outline button-light" type="submit" value="Pay Now">
+        </label>
+      <!--<ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoCreditDetails2()">
+      <i class="icon ion-card"></i>
        <img src="img/visa.png" class="ion-card logosStyle1">
         Credit Card
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
+        <i class="item-icon-left rightArrow"><input type="button" ng-click="gotoCreditDetails2(5)"  value="edit"></i></div>
       </ion-item >
-      <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoCreditDetails()">
-      <!--<i class="icon ion-card"></i>-->
+      <ion-item class="item item-icon-left itemHeight" href="" ng-click="gotoCreditDetails2()">
+      <i class="icon ion-card"></i>
               <img src="img/american.png" class="ion-card logosStyle1"> 
         Debit Card
-        <i class="item-icon-left ion-chevron-right rightArrow"></i>
-      </ion-item>
+        <i class="item-icon-left rightArrow"><input type="button" ng-click="gotoCreditDetails2(5)"  value="edit"></i></div>
+      </ion-item>-->
+      </form>
     </ion-list>
   </ion-content>
 </ion-view>

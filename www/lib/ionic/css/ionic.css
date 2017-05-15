@@ -5703,7 +5703,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
  */
 .item {
   border-color:steelblue;
-  background-color: lightgray;
+  /*background-color: lightgray;*/
   color: #444;
   position: relative;
   z-index: 2;

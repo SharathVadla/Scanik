@@ -11,9 +11,7 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
 window.location="#/app/myCart";
   }
   
-  $rootScope.gotoCreditDetails=function(){
-  window.location="#/app/creditDetails";
-}
+
 $rootScope.orderSuccess=function(){
     window.location="#/app/reciept";
   }
@@ -47,13 +45,17 @@ $rootScope.orderSuccess=function(){
         $rootScope.cardIndex=id1;
   window.location="#/app/creditDetails";
 }
+$rootScope.gotoCreditDetails2=function(id2){
+        $rootScope.cardIndex=id2;
+  window.location="#/app/creditDetails2";
+}
 $rootScope.accNumber=null;
 $rootScope.expDate=null;
 $rootScope.cvv=null;
 $rootScope.zipCode=null;
 $rootScope.accName=null;
 $rootScope.card={};
-$rootScope.saveCreditCard=function(card){
+$rootScope.saveCreditCard=function(card,cardId){
 $rootScope.master1=angular.copy(card);
        localStorage.setItem("payCards"+$rootScope.cardIndex,JSON.stringify($rootScope.master1));
         if($rootScope.cardIndex==1)
@@ -76,16 +78,24 @@ $rootScope.master1=angular.copy(card);
        {
                $rootScope.card5=JSON.parse(localStorage.getItem("payCards"+$rootScope.cardIndex));
        }
+       if(cardId==1)
+       {
     window.location="#/app/creditCard";
+       }
+       if(cardId==2)
+       {
+    window.location="#/app/paymentMethod";
+       }
 }
 
 
   //function for saveShippingAddress
-   $rootScope.saveShippingAddress=function(fn,ln,mb,a1,a2,a3,a4,a5,a6){
+   $rootScope.saveShippingAddress=function(fn,ln,nn,mb,a1,a2,a3,a4,a5,a6,addressId){
       var user={
          firstName:fn,
          lastName:ln,
          number:mb,
+         nickName:nn,
          address1:a1,
          address2:a2,
          address3:a3,
@@ -125,16 +135,22 @@ $rootScope.master1=angular.copy(card);
        {
                $rootScope.details6=JSON.parse(localStorage.getItem("shippingAddresses"+$rootScope.index));
                console.log($rootScope.details6.firstName);
-               window.location="#/app/shippingInfo2";
+               
        }
-
-       window.location="#/app/shippingInfo";
+   if(addressId==1){
+   window.location="#/app/shippingInfo";
+   }
+   if(addressId==2){
+   window.location="#/app/shippingInfo2";
+   }
+      
      }
 //start of pick contact function
    $rootScope.data=null;
         $rootScope.firstName=null;
         $rootScope.lastName=null;
         $rootScope.number=null;
+        $rootScope.nickName=null;
         $rootScope.address1=null;
          $rootScope.address2=null;
          $rootScope.address3=null;
@@ -237,6 +253,16 @@ $rootScope.master1=angular.copy(card);
         'menuContent': {
           templateUrl: 'templates/creditDetails.html',
           controller: 'creditDetailsCtrl'
+        }
+      }
+    })
+    .state('app.creditDetails2', {
+        
+      url: '/creditDetails2',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/creditDetails2.html',
+          controller: 'creditDetails2Ctrl'
         }
       }
     })
