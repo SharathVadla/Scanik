@@ -4,6 +4,9 @@
 </ion-nav-buttons>
   <ion-content class="screen_bg" scroll="false">
      <ion-list>
+        <ion-item class="screen_bg titleStyle" style="text-align: center">
+        Order Summary
+       </ion-item>
        <ion-item  class="screen_bg" ng-show="Pname">
          <div class="row">
          <div class="col col-50">{{Pname|limitTo:11}}</div>
@@ -15,7 +18,7 @@
       <option>3</option>
     </select>
      </div>    
-        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct1()"></div>
          </div>
        </ion-item>
   
@@ -31,7 +34,7 @@
       <option>3</option>
     </select>
      </div> 
-        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct2()"></div>
         </div>
        </ion-item>
            <!-- <ion-item  class="screen_bg">

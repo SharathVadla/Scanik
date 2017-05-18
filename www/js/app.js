@@ -34,10 +34,28 @@ $rootScope.orderSuccess=function(){
 //function which take shipping address id
  $rootScope.gotoShippingAddress=function(id){
     $rootScope.index=id;
+    $rootScope.firstName=null;
+        $rootScope.lastName=null;
+        $rootScope.number=null;
+        $rootScope.nickName=null;
+        $rootScope.address1=null;
+        $rootScope.address2=null;
+        $rootScope.address3=null;
+        $rootScope.address4=null;
+
     window.location="#/app/shippingAddress";
   }
   $rootScope.gotoShippingContact=function(id){
     $rootScope.index=id;
+    $rootScope.firstName=null;
+        $rootScope.lastName=null;
+        $rootScope.number=null;
+        $rootScope.nickName=null;
+        $rootScope.address1=null;
+        $rootScope.address2=null;
+        $rootScope.address3=null;
+        $rootScope.address4=null;
+
     window.location="#/app/shippingContact";
   }
   //function for saving credit cards
@@ -152,9 +170,9 @@ $rootScope.master1=angular.copy(card);
         $rootScope.number=null;
         $rootScope.nickName=null;
         $rootScope.address1=null;
-         $rootScope.address2=null;
-         $rootScope.address3=null;
-         $rootScope.address4=null;
+        $rootScope.address2=null;
+        $rootScope.address3=null;
+        $rootScope.address4=null;
         //$rootScope.address5=null;
         $rootScope.getContact = function() {
 

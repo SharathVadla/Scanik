@@ -9,10 +9,10 @@ angular.module('starter.controllers', ['ngCordova'])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 $rootScope.Pname=null;
-$rootScope.Pcost=null;
-$rootScope.Pcost1=null;
+$rootScope.Pcost=0;
+$rootScope.Pcost1=0;
 $rootScope.Pname1=null;
-$rootScope.Total=null;
+$rootScope.Total=0;
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -116,38 +116,47 @@ $rootScope.Total=null;
 .controller('creditDetails2Ctrl', function($scope, $stateParams,$location) { 
 })
 .controller('storeCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner,$http,$rootScope) {
-  $scope.gotoRegister=function(){
+  $rootScope.gotoRegister=function(){
  window.location="#/app/register";
   }
 
-$scope.scanBarcode = function() {     
+$rootScope.scanBarcode = function() {     
         $cordovaBarcodeScanner.scan().then(function(imageData) {
           $scope.barCodenumber=imageData.text;
             console.log("Barcode Format -> " + imageData.format);
             console.log("Cancelled -> " + imageData.cancelled);
  
-             $http({
+          $http({
     "method":"get",
     "url" : "http://scanik.com/apis/product?id="+ $scope.barCodenumber,
-    "data":{"id":  $scope.barCodenumber}
+    "data":{"id":   $scope.barCodenumber}
   }).then(function(result) {
 
           console.log(result);
-            $scope.response = result.data;
-            $rootScope.Pname=$scope.response[0].name;
-            $rootScope.Pcost=$scope.response[0].original_price;
-            console.log($rootScope.Pname);
-            console.log($rootScope.Pcost);
-             $rootScope.Total= parseFloat($rootScope.Pcost);
+            $rootScope.response = result.data;
+            if($rootScope.response[0].pid==1){
+            $rootScope.Pname=$rootScope.response[0].name;
+            $rootScope.Pcost=$rootScope.response[0].original_price;
+          }
+          if($rootScope.response[0].pid==2){
+            $rootScope.Pname1=$rootScope.response[0].name;
+            $rootScope.Pcost1=$rootScope.response[0].original_price;
+            }
+            //console.log($rootScope.Pname);
+            //console.log($rootScope.Pcost);
+             $rootScope.Total= (parseFloat($rootScope.Pcost)+parseFloat($rootScope.Pcost1));
+             console.log( $rootScope.Total);
             
         },function(error){
           console.log(error);
         });
+         
         if(imageData.cancelled==0){
+
             window.location="#/app/myCart";
             }           
              
-
+        
 
         }, function(error) {
             console.log("An error happened -> " + error);
@@ -206,57 +215,24 @@ $scope.scanBarcode = function() {
 })
 .controller('myCartCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner,$http,$rootScope) {
   //Take this code out later by calling this in storeCtrl
- $scope.scanBarcode = function() {
-        $cordovaBarcodeScanner.scan().then(function(imageData) {
-          $scope.barCodenumber=imageData.text;
-            console.log("Barcode Format -> " + imageData.format);
-            console.log("Cancelled -> " + imageData.cancelled);
-           $http({
-    "method":"get",
-    "url" : "http://scanik.com/apis/product?id="+ $scope.barCodenumber,
-    "data":{"id":  $scope.barCodenumber}
-  }).then(function(result) {
-
-          console.log(result);
-            $scope.response = result.data;
-            $rootScope.Pname1=$scope.response[0].name;
-            $rootScope.Pcost1=$scope.response[0].original_price;
-            $rootScope.Total= parseFloat($rootScope.Pcost)+ parseFloat($rootScope.Pcost1);
-            console.log($rootScope.Pname);
-            console.log($rootScope.Pcost);
-            
-        },function(error){
-          console.log(error);
-        });
-
-
-            if(imageData.cancelled==0){
-            window.location="#/app/myCart";
-            } 
-        }, function(error) {
-            console.log("An error happened -> " + error);
-        },
-        { 
-          preferFrontCamera : true, // iOS and Android
-          showFlipCameraButton : true, // iOS and Android
-          showTorchButton : true, // iOS and Android
-          torchOn: true, // Android, launch with the torch switched on (if available)
-          prompt : "Scanik.com", // Android
-          resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-          formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
-          orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
-          disableAnimations : true, // iOS
-          disableSuccessBeep: false // iOS
-      }
-      
-        );
-    };
+ $rootScope.DeleteProduct1=function(){
+  var r= confirm("Are you sure want to remove this item?");
+  if(r==true){
+    $rootScope.Pname=null;
+    $rootScope.Total=$rootScope.Total-parseFloat($rootScope.Pcost);
+    $rootScope.Pcost=0;
+  }
+ }
+ $rootScope.DeleteProduct2=function(){
+   var k=confirm("Are you sure want to remove this item?");
+   if(k==true){
+    $rootScope.Pname1=null;
+        $rootScope.Total=$rootScope.Total-parseFloat($rootScope.Pcost1);
+            $rootScope.Pcost1=0;
+ }
+ }
    $scope.gotoShippingInfo=function(){
 window.location="#/app/shippingInfo2";
-  }
-  $scope.DeleteProduct=function(){
-    $scope.removeItems=true;
-    alert("Are you sure want to remove this item?");
   }
 })
 .controller('recieptCtrl', function($scope, $stateParams) {

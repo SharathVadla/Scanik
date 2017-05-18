@@ -3,10 +3,10 @@
     <button class="button button-icon icon ion-bag" ng-click="gotoMycart()"></button>
 </ion-nav-buttons>
 <ion-content class="screen_bg">
-   <ion-item class="screen_bg titleStyle" style="text-align:center" ng-show="Pname">    
+   <ion-item class="screen_bg titleStyle" style="text-align:center" ng-show="Total">    
        My Products
        </ion-item>
-       <ion-item class="screen_bg titleStyle" style="text-align:center" ng-hide="Pname">    
+       <ion-item class="screen_bg titleStyle" style="text-align:center" ng-hide="Total">    
        No Products scanned yet.
        </ion-item>
         <ion-item  class="screen_bg" ng-show="Pname">
@@ -20,7 +20,7 @@
       <option>3</option>
     </select>
      </div>    
-        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct1()"></div>
          </div>
        </ion-item>
   
@@ -28,14 +28,15 @@
          <div class="row">
          <div class="col col-50">{{Pname1|limitTo:11}}</div>
         <div class="col col-33">${{Pcost1}}</div>
+        <div class="col col-17">${{selectedValue}}</div>
          <div class="col">   
     <select>
-      <option selected>1</option>
-      <option >2</option>
-      <option>3</option>
+      <option selected ng-model="selectedValue" ng-value="1">1</option>
+      <option ng-model="selectedValue" ng-value="2">2</option>
+      <option ng-model="selectedValue" ng-value="3">3</option>
     </select>
      </div> 
-        <div class="col icon ion-trash-a" ng-click="DeleteProduct()"></div>
+        <div class="col icon ion-trash-a" ng-click="DeleteProduct2()"></div>
         </div>
        </ion-item>
             <!--<ion-item  class="screen_bg">
@@ -71,7 +72,7 @@
         </div>
    </ion-item>-->
 
-       <ion-item  class="screen_bg" ng-show="Pname">
+       <ion-item  class="screen_bg" ng-show="Total">
          <div class="row">
          <div class="col col-50">Total</div>
         <div class="col col-33"><b>${{Total}}</b></div>
@@ -80,8 +81,8 @@
         <ion-item class="screen_bg">
        <button class="button button-block button-outline button-light icon-right" ng-model="continueShopping" ng-click="scanBarcode()">Continue Shopping</button>
        </ion-item>
-       <ion-item class="screen_bg" ng-show="Pname">
-       <button class="button button-block button-outline button-light icon-right" ng-model="checkOut" ng-click="gotoShippingInfo()">Proceed to Check out</button>
+       <ion-item class="screen_bg" ng-show="Total">
+       <button class="button button-block button-outline button-light icon-right" ng-model="checkOut" ng-click="gotoShippingInfo()">Continue to Check out</button>
        </ion-item>
      </ion-list>
 </ion-content>
