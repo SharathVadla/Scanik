@@ -10,12 +10,13 @@
        <ion-item  class="screen_bg" ng-show="Pname">
          <div class="row">
          <div class="col col-50">{{Pname|limitTo:11}}</div>
-        <div class="col col-33">${{Pcost}}</div>
+        <div class="col col-33">${{originalPrice1|number:2}}</div>
      <div class="col">   
-    <select>
-      <option selected>1</option>
-      <option >2</option>
-      <option>3</option>
+    <select  ng-model="selectedvalue1.id" ng-init="selectedvalue1.id='1'" ng-change="update1(selectedvalue1.id)" >
+
+      <option  value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
     </select>
      </div>    
         <div class="col icon ion-trash-a" ng-click="DeleteProduct1()"></div>
@@ -25,13 +26,12 @@
       <ion-item  class="screen_bg" ng-show="Pname1">
          <div class="row">
          <div class="col col-50">{{Pname1|limitTo:11}}</div>
-        <div class="col col-33">${{Pcost1}}</div>
-         
+        <div class="col col-33">${{originalPrice|number:2}}</div>
          <div class="col">   
-    <select>
-      <option selected>1</option>
-      <option >2</option>
-      <option>3</option>
+    <select  ng-model="selectedValue.id" ng-init="selectedValue.id='1'" ng-change="update(selectedValue.id)" >
+      <option   value="1">1</option>
+      <option value="2">2</option>
+      <option  value="3">3</option>
     </select>
      </div> 
         <div class="col icon ion-trash-a" ng-click="DeleteProduct2()"></div>
@@ -97,7 +97,7 @@
        <ion-item  class="screen_bg" ng-show="Total">
          <div class="row">
          <div class="col col-50">Shipping amount:</div>
-        <div class="col"><b>${{Total}}</b></div>
+        <div class="col"><b>${{Total| number:2}}</b></div>
         </div>
        </ion-item>
        <ion-item  class="screen_bg">

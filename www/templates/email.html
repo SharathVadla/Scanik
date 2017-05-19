@@ -6,25 +6,29 @@
       Please enter your Details(step-1)
        </ion-item>
      </ion-list>
-   <form ng-submit="gotoCreditcard()">
+   <form ng-submit="gotoRegister(user)">
+  <label class="item item-input item-floating-label">
+    <span class="input-label">First Name</span>
+    <input type="text" placeholder="Enter First Name" name="FirstName" ng-model="user.First_Name" required>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Last Name</span>
+    <input type="text" placeholder="Enter Last name" name="LastName" ng-model="user.Last_Name" required>
+  </label>
   <label class="item item-input item-floating-label">
     <span class="input-label">Email</span>
-    <input type="text" placeholder="Enter Email" name="email" ng-model="email" required>
+    <input type="text" placeholder="Enter Email address" name="email" ng-model="user.email" required>
   </label>
   <label class="item item-input item-floating-label">
-    <span class="input-label">Name</span>
-    <input type="text" placeholder="Enter name" name="email" ng-model="name" required>
-  </label>
-  <label class="item item-input item-floating-label">
-    <span class="input-label">Address</span>
-    <input type="text" placeholder="Enter address" name="email" ng-model="address" required>
+    <span class="input-label">Password</span>
+    <input type="password" placeholder="Enter Password" name="password" ng-model="user.password" required>
   </label>
   <label class="item item-input item-floating-label">
     <span class="input-label">Phone Number</span>
-    <input type="text" placeholder="Enter phone number" name="email" ng-model="pNo" required>
+    <input type="number" placeholder="Enter phone number" name="email" ng-model="user.pNo" required>
   </label>
    <label class="item screen_bg" >
-          <input class="button button-block button-outline button-light" type="submit" value="save and proceed">
+          <input class="button button-block button-outline button-light" type="submit" value="save">
         </label>
    </form>
 </div>

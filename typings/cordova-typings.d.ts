@@ -9,3 +9,4 @@
 /// <reference path="..\.vscode\typings\cordova\plugins\BarcodeScanner.d.ts"/>
 /// <reference path="..\.vscode\typings\cordova\plugins\StatusBar.d.ts"/>
 /// <reference path="..\.vscode\typings\cordova\plugins\Contacts.d.ts"/>
+/// <reference path="..\.vscode\typings\cordova\plugins\Dialogs.d.ts"/>

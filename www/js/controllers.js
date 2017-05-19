@@ -13,6 +13,10 @@ $rootScope.Pcost=0;
 $rootScope.Pcost1=0;
 $rootScope.Pname1=null;
 $rootScope.Total=0;
+$rootScope.originalPrice1=0;
+$rootScope.originalPrice=0;
+ $rootScope.selectedvalue = { id: '1' };
+   $rootScope.selectedvalue1 = { id: '1' };
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -27,12 +31,21 @@ $rootScope.Total=0;
   $scope.closeLogin = function() {
     $scope.modal.hide();
   };
-
+  
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
   };
+  $scope.gotoShippingInfo=function(){
+    window.location="#/app/shippingInfo";
+  }
 
+    $rootScope.gotoRegister=function(){
+      window.location="#/app/register";
+       $timeout(function() {
+      $scope.closeLogin();
+    }, 1000);
+    }
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
@@ -88,9 +101,31 @@ $rootScope.Total=0;
 
 })
 
-.controller('EmailCtrl', function($scope, $stateParams,$location) {
-  $scope.gotoCreditcard=function(){
-  window.location="#/app/creditCard";
+.controller('EmailCtrl', function($scope, $stateParams,$location,$http) {
+  $scope.gotoRegister=function(user){
+ $scope.Registerdata=angular.copy(user);
+ console.log($scope.Registerdata);
+ var data = [{"first_name":$scope.Registerdata.First_Name,
+              "last_name":$scope.Registerdata.Last_Name,
+              "email":$scope.Registerdata.email,
+              "password":$scope.Registerdata.password,
+              "phone":$scope.Registerdata.pNo }];
+              console.log("data,",data);
+    $http({    
+    "url" : "http://scanik/apis/register",
+    "method":"POST",
+    "data":data
+  }).then(function(result) {
+
+          console.log(result);
+            $rootScope.response = result.data;          
+            
+        },function(error){
+          console.log(error);
+        });
+
+
+  window.location="#/app/register";
   }
 })
 .controller('creditCardCtrl', function($scope, $stateParams,$location) {
@@ -99,6 +134,9 @@ $rootScope.Total=0;
   }
 })
 .controller('shippingInfoCtrl', function($scope, $stateParams,$location) {
+  $scope.gotoStore=function(){
+    window.location="#/app/store";
+  }
  
 })
 .controller("shippingAddressCtrl", ['$scope', 'ContactsService','$rootScope', function($scope, ContactsService,$rootScope,$location) {
@@ -116,10 +154,6 @@ $rootScope.Total=0;
 .controller('creditDetails2Ctrl', function($scope, $stateParams,$location) { 
 })
 .controller('storeCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner,$http,$rootScope) {
-  $rootScope.gotoRegister=function(){
- window.location="#/app/register";
-  }
-
 $rootScope.scanBarcode = function() {     
         $cordovaBarcodeScanner.scan().then(function(imageData) {
           $scope.barCodenumber=imageData.text;
@@ -134,17 +168,21 @@ $rootScope.scanBarcode = function() {
 
           console.log(result);
             $rootScope.response = result.data;
-            if($rootScope.response[0].pid==1){
+             if($rootScope.response[0].pid==1){
+              $rootScope.selectedvalue1.id = '1';    
             $rootScope.Pname=$rootScope.response[0].name;
             $rootScope.Pcost=$rootScope.response[0].original_price;
+            $rootScope.originalPrice1=$rootScope.Pcost;
           }
           if($rootScope.response[0].pid==2){
+             $rootScope.selectedvalue.id = '1';
             $rootScope.Pname1=$rootScope.response[0].name;
             $rootScope.Pcost1=$rootScope.response[0].original_price;
+            $rootScope.originalPrice= $rootScope.Pcost1;
             }
             //console.log($rootScope.Pname);
             //console.log($rootScope.Pcost);
-             $rootScope.Total= (parseFloat($rootScope.Pcost)+parseFloat($rootScope.Pcost1));
+            $rootScope.Total= (parseFloat($rootScope.originalPrice1)+parseFloat($rootScope.originalPrice));
              console.log( $rootScope.Total);
             
         },function(error){
@@ -209,26 +247,49 @@ $rootScope.scanBarcode = function() {
 })
 .controller('shippingContactCtrl', function($scope, $stateParams,$location) {
   $scope.gotoOrderSummary=function(){
+    
     window.location="#/app/orderSummary";
   }
   
 })
 .controller('myCartCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner,$http,$rootScope) {
   //Take this code out later by calling this in storeCtrl
+
+$rootScope.update1=function(value){
+    console.log(value);
+   
+    $rootScope.originalPrice1=$rootScope.Pcost;
+     $rootScope.originalPrice1=$rootScope.Pcost*value;
+     $rootScope.Total= (parseFloat($rootScope.originalPrice1)+parseFloat($rootScope.originalPrice));
+  }
+  $rootScope.update=function(value){
+    console.log(value);
+   
+    $rootScope.originalPrice=$rootScope.Pcost1;
+      $rootScope.originalPrice=$rootScope.Pcost1*value;
+      $rootScope.Total= (parseFloat($rootScope.originalPrice1)+parseFloat($rootScope.originalPrice));
+       console.log($rootScope.originalPrice);
+    console.log($rootScope.Pcost1);
+  }
+
+
  $rootScope.DeleteProduct1=function(){
+  
   var r= confirm("Are you sure want to remove this item?");
   if(r==true){
     $rootScope.Pname=null;
-    $rootScope.Total=$rootScope.Total-parseFloat($rootScope.Pcost);
-    $rootScope.Pcost=0;
+    $rootScope.Total=$rootScope.Total-parseFloat($rootScope.originalPrice1);
+    $rootScope.originalPrice1=0;
+     $rootScope.selectedvalue1.id = '1';
   }
  }
  $rootScope.DeleteProduct2=function(){
    var k=confirm("Are you sure want to remove this item?");
    if(k==true){
-    $rootScope.Pname1=null;
-        $rootScope.Total=$rootScope.Total-parseFloat($rootScope.Pcost1);
-            $rootScope.Pcost1=0;
+   $rootScope.Pname1=null;
+   $rootScope.Total=$rootScope.Total-parseFloat($rootScope.originalPrice);
+   $rootScope.originalPrice=0;
+   $rootScope.selectedvalue.id = '1';
  }
  }
    $scope.gotoShippingInfo=function(){
