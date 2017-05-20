@@ -246,9 +246,12 @@ $rootScope.scanBarcodeTest = function() {
             $rootScope.Pname=$rootScope.response[0].name;
             $rootScope.Pcost=$rootScope.response[0].original_price;
             $rootScope.originalPrice1=$rootScope.Pcost;
-              if(productservice.getProduct().quantity_1)
+            if(productservice.getProduct())
+            {
+               if(productservice.getProduct().quantity_1 != undefined)
             {
               $rootScope.quantity1 = 1;
+            }
             }
             else{
              if($rootScope.quantity1)
@@ -261,22 +264,30 @@ $rootScope.scanBarcodeTest = function() {
             }
           }
           }
-          if($rootScope.response[0].pid==2){
+           if($rootScope.response[0].pid==2){
             // $rootScope.selectedvalue.id = '1';
             $rootScope.Pname1=$rootScope.response[0].name;
             $rootScope.Pcost1=$rootScope.response[0].original_price;
-            //$rootScope.originalPrice= $rootScope.Pcost1;
+            $rootScope.originalPrice= $rootScope.Pcost1;
+            }
+            if(productservice.getProduct())
+            {
+              if(productservice.getProduct().quantity_2 != undefined)
+            {
+              $rootScope.quantity2 = 1;
+            }
+            }
+            else{
              if($rootScope.quantity2)
               {
-                 if($rootScope.quantity2  < 3 ){
-                $rootScope.quantity2= $rootScope.quantity2+1;}
+                if($rootScope.quantity2  < 3 )
+                  $rootScope.quantity2=$rootScope.quantity2+1;
               }
               else {
                 $rootScope.quantity2 = 1;
-              }
-                     $rootScope.originalPrice=$rootScope.Pcost1*$rootScope.quantity2;
-              productservice.setProduct({"quantity_2":$rootScope.quantity2});
             }
+          }
+              //$rootScope.$apply();
             //console.log($rootScope.Pname);
             //console.log($rootScope.Pcost);
             $rootScope.Total= (parseFloat($rootScope.originalPrice1)+parseFloat($rootScope.originalPrice));
@@ -315,6 +326,11 @@ $rootScope.scanBarcodeTest = function() {
       }; 
       $rootScope.$watch("quantity2",function(n,o){
                $rootScope.originalPrice=$rootScope.Pcost1*n;
+                     $rootScope.Total= (parseFloat($rootScope.originalPrice1)+parseFloat($rootScope.originalPrice));
+
+      })
+      $rootScope.$watch("quantity1",function(n,o){
+               $rootScope.originalPrice=$rootScope.Pcost*n;
                      $rootScope.Total= (parseFloat($rootScope.originalPrice1)+parseFloat($rootScope.originalPrice));
 
       })
@@ -409,6 +425,7 @@ $rootScope.update1=function(value){
     $rootScope.Pname=null;
     $rootScope.Total=$rootScope.Total-parseFloat($rootScope.originalPrice1);
     $rootScope.originalPrice1=0;
+    $rootScope.quantity1=0;
      //$rootScope.selectedvalue1.id = '1';
   }
  }
@@ -418,6 +435,7 @@ $rootScope.update1=function(value){
    $rootScope.Pname1=null;
    $rootScope.Total=$rootScope.Total-parseFloat($rootScope.originalPrice);
    $rootScope.originalPrice=0;
+   $rootScope.quantity2=0;
   // $rootScope.selectedvalue.id = '1';
  }
  }
