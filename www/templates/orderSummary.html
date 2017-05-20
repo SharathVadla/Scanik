@@ -7,17 +7,20 @@
         <ion-item class="screen_bg titleStyle" style="text-align: center">
         Order Summary
        </ion-item>
+       Daata   {{quantity1}}
+       panme {{Pname1}}
        <ion-item  class="screen_bg" ng-show="Pname">
          <div class="row">
          <div class="col col-50">{{Pname|limitTo:11}}</div>
         <div class="col col-33">${{originalPrice1|number:2}}</div>
      <div class="col">   
-    <select  ng-model="selectedvalue1.id" ng-init="selectedvalue1.id='1'" ng-change="update1(selectedvalue1.id)" >
+    <select  ng-model="quantity1"  ng-selected="quantity1" ng-change="update1(quantity1)" >
 
       <option  value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
     </select>
+     
      </div>    
         <div class="col icon ion-trash-a" ng-click="DeleteProduct1()"></div>
          </div>
@@ -28,7 +31,7 @@
          <div class="col col-50">{{Pname1|limitTo:11}}</div>
         <div class="col col-33">${{originalPrice|number:2}}</div>
          <div class="col">   
-    <select  ng-model="selectedValue.id" ng-init="selectedValue.id='1'" ng-change="update(selectedValue.id)" >
+    <select  ng-model="quantity2"   ng-selected="quantity2" ng-change="update(quantity2)" >
       <option   value="1">1</option>
       <option value="2">2</option>
       <option  value="3">3</option>

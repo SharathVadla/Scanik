@@ -15,8 +15,10 @@ $rootScope.Pname1=null;
 $rootScope.Total=0;
 $rootScope.originalPrice1=0;
 $rootScope.originalPrice=0;
- $rootScope.selectedvalue = { id: '1' };
-   $rootScope.selectedvalue1 = { id: '1' };
+$rootScope.quatity1=1;
+$rootScope.quatity2=1;
+//  $rootScope.selectedvalue = { id: '1' };
+//    $rootScope.selectedvalue1 = { id: '1' };
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -154,13 +156,48 @@ $rootScope.originalPrice=0;
 .controller('creditDetails2Ctrl', function($scope, $stateParams,$location) { 
 })
 .controller('storeCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner,$http,$rootScope) {
-$rootScope.scanBarcode = function() {     
+$rootScope.scanBarcodeTest = function() {  
+
+ $http({
+    "method":"get",
+    "url" : "http://scanik.com/apis/product?id=610762569327",
+    "data":{"id":   $scope.barCodenumber}
+  }).then(function(result) {
+
+          console.log(result);
+            $rootScope.response = result.data;
+             if($rootScope.response[0].pid==1){
+              //$rootScope.selectedvalue1.id = '1';    
+            $rootScope.Pname=$rootScope.response[0].name;
+            $rootScope.Pcost=$rootScope.response[0].original_price;
+            $rootScope.originalPrice1=$rootScope.Pcost;
+          }
+          if($rootScope.response[0].pid==2){
+            // $rootScope.selectedvalue.id = '1';
+            $rootScope.Pname1=$rootScope.response[0].name;
+            $rootScope.Pcost1=$rootScope.response[0].original_price;
+            $rootScope.originalPrice= $rootScope.Pcost1;
+            }
+            //console.log($rootScope.Pname);
+            //console.log($rootScope.Pcost);
+            $rootScope.Total= (parseFloat($rootScope.originalPrice1)+parseFloat($rootScope.originalPrice));
+             console.log( $rootScope.Total);
+            
+        },function(error){
+          console.log(error);
+        });
+            window.location="#/app/myCart";
+                     
+}
+
+
+        $rootScope.scanBarcode = function() {  
         $cordovaBarcodeScanner.scan().then(function(imageData) {
           $scope.barCodenumber=imageData.text;
             console.log("Barcode Format -> " + imageData.format);
             console.log("Cancelled -> " + imageData.cancelled);
  
-          $http({
+              $http({
     "method":"get",
     "url" : "http://scanik.com/apis/product?id="+ $scope.barCodenumber,
     "data":{"id":   $scope.barCodenumber}
@@ -169,16 +206,31 @@ $rootScope.scanBarcode = function() {
           console.log(result);
             $rootScope.response = result.data;
              if($rootScope.response[0].pid==1){
-              $rootScope.selectedvalue1.id = '1';    
+              //$rootScope.selectedvalue1.id = '1';    
             $rootScope.Pname=$rootScope.response[0].name;
             $rootScope.Pcost=$rootScope.response[0].original_price;
             $rootScope.originalPrice1=$rootScope.Pcost;
+             if($rootScope.quantity1)
+              {
+                $rootScope.quantity1+1;
+              }
+              else {
+                $rootScope.quantity1 = 1;
+              }
           }
           if($rootScope.response[0].pid==2){
-             $rootScope.selectedvalue.id = '1';
+            // $rootScope.selectedvalue.id = '1';
             $rootScope.Pname1=$rootScope.response[0].name;
             $rootScope.Pcost1=$rootScope.response[0].original_price;
             $rootScope.originalPrice= $rootScope.Pcost1;
+             if($rootScope.quantity2)
+              {
+                $rootScope.quantity2+1;
+              }
+              else {
+                $rootScope.quantity2 = 1;
+              }
+
             }
             //console.log($rootScope.Pname);
             //console.log($rootScope.Pcost);
@@ -193,10 +245,11 @@ $rootScope.scanBarcode = function() {
 
             window.location="#/app/myCart";
             }           
-             
+         
         
 
-        }, function(error) {
+        }
+        , function(error) {
             console.log("An error happened -> " + error);
         },
         { 
@@ -214,7 +267,7 @@ $rootScope.scanBarcode = function() {
       
         );
         
-     }; 
+      }; 
 })
 
 .controller('shippingMethodCtrl', function($scope, $stateParams,$location) {
@@ -228,10 +281,15 @@ $rootScope.scanBarcode = function() {
     window.location="#/app/reciept";
   }
 })
-.controller('orderSummaryCtrl', function($scope, $stateParams,$cordovaBarcodeScanner,$location) {
+.controller('orderSummaryCtrl', function($scope, $stateParams,$cordovaBarcodeScanner,$location,$rootScope,productservice) {
    $scope.gotoPaymentMethod=function(){
     window.location="#/app/paymentMethod";
   }
+  //debugger;
+console.log("ps",productservice);
+$rootScope.quantity1= productservice.getProduct().quantity_1;
+  $rootScope.quantity2= productservice.getProduct().quantity_2;
+ //console.log ("qiuant",productservice.getProduct());
 })
 .controller('myordersCtrl', function($scope, $stateParams) {
   
@@ -252,35 +310,51 @@ $rootScope.scanBarcode = function() {
   }
   
 })
-.controller('myCartCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner,$http,$rootScope) {
+.service("productservice",function(){
+  var product;
+  return {
+    "setProduct" : function(obj){
+      product = obj;
+    },
+    "getProduct" : function(){
+      return product;
+    },
+  }
+})
+.controller('myCartCtrl', function($scope, $stateParams,$location,$cordovaBarcodeScanner,$http,$rootScope,productservice) {
   //Take this code out later by calling this in storeCtrl
 
 $rootScope.update1=function(value){
-    console.log(value);
-   
+
+    $rootScope.quatity1=value;
     $rootScope.originalPrice1=$rootScope.Pcost;
-     $rootScope.originalPrice1=$rootScope.Pcost*value;
+     $rootScope.originalPrice1=$rootScope.Pcost*$rootScope.quatity1;
      $rootScope.Total= (parseFloat($rootScope.originalPrice1)+parseFloat($rootScope.originalPrice));
+      productservice.setProduct({"quantity_1":$rootScope.quatity1});
+     console.log("in set",productservice.getProduct());
+    
   }
   $rootScope.update=function(value){
-    console.log(value);
-   
+    //console.log(value);
+    //debugger;
+    $rootScope.quatity2=value;
     $rootScope.originalPrice=$rootScope.Pcost1;
-      $rootScope.originalPrice=$rootScope.Pcost1*value;
+      $rootScope.originalPrice=$rootScope.Pcost1*$rootScope.quatity2;
       $rootScope.Total= (parseFloat($rootScope.originalPrice1)+parseFloat($rootScope.originalPrice));
        console.log($rootScope.originalPrice);
     console.log($rootScope.Pcost1);
+     productservice.setProduct({"quantity_2":$rootScope.quatity2});
+     console.log("in set",productservice.getProduct());
   }
 
 
- $rootScope.DeleteProduct1=function(){
-  
+ $rootScope.DeleteProduct1=function(){ 
   var r= confirm("Are you sure want to remove this item?");
   if(r==true){
     $rootScope.Pname=null;
     $rootScope.Total=$rootScope.Total-parseFloat($rootScope.originalPrice1);
     $rootScope.originalPrice1=0;
-     $rootScope.selectedvalue1.id = '1';
+     //$rootScope.selectedvalue1.id = '1';
   }
  }
  $rootScope.DeleteProduct2=function(){
@@ -289,7 +363,7 @@ $rootScope.update1=function(value){
    $rootScope.Pname1=null;
    $rootScope.Total=$rootScope.Total-parseFloat($rootScope.originalPrice);
    $rootScope.originalPrice=0;
-   $rootScope.selectedvalue.id = '1';
+  // $rootScope.selectedvalue.id = '1';
  }
  }
    $scope.gotoShippingInfo=function(){
