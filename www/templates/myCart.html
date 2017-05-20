@@ -16,9 +16,9 @@
      <div class="col">   
     <select  ng-model="quantity1" ng-selected="quantity1" ng-change="update1(quantity1)" >
 
-      <option  value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
+      <option  value="1" ng-selected="quantity1 == 1">1</option>
+      <option value="2" ng-selected="quantity1 == 2">2</option>
+      <option value="3" ng-selected="quantity1 == 3">3</option>
     </select>
      </div>    
         <div class="col icon ion-trash-a" ng-click="DeleteProduct1()"></div>
@@ -29,11 +29,12 @@
          <div class="row">
          <div class="col col-50">{{Pname1|limitTo:11}}</div>
         <div class="col col-33">${{originalPrice|number:2}}</div>
-         <div class="col">   
+         <div class="col">  
+          
     <select  ng-model="quantity2" ng-selected="quantity2" ng-change="update(quantity2)" >
-      <option   value="1">1</option>
-      <option value="2">2</option>
-      <option  value="3">3</option>
+      <option   value="1" ng-selected="quantity2 == 1">1</option>
+      <option value="2" ng-selected="quantity2 == 2">2</option>
+      <option  value="3" ng-selected="quantity2 == 3">3</option>
     </select>
      </div> 
         <div class="col icon ion-trash-a" ng-click="DeleteProduct2()"></div>
@@ -79,7 +80,7 @@
         </div>
        </ion-item>
         <ion-item class="screen_bg">
-       <button class="button button-block button-outline button-light icon-right" ng-model="continueShopping" ng-click="scanBarcode()">Continue Shopping</button>
+       <button class="button button-block button-outline button-light icon-right" ng-model="continueShopping" ng-click="scanBarcodeTest()">Continue Shopping</button>
        </ion-item>
        <ion-item class="screen_bg" ng-show="Total">
        <button class="button button-block button-outline button-light icon-right" ng-model="checkOut" ng-click="gotoShippingInfo()">Continue to Check out</button>
